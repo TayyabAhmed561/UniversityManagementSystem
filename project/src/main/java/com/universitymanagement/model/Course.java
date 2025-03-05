@@ -105,26 +105,9 @@ public class Course {
     //consider using toString method for debugging/logging
 
     public static void main(String[] args){
-        List<Course> courses = new ArrayList<>();
-        courses.add(new Course("Mathematics", "Calculus I", "001",
-                "Dr. Alan Turing", 30, 25, 1, "Mon/Wed",
-                "9-11 AM", "Room 100"));
-        courses.add(new Course("English", "Literature Basics", "002",
-                "Prof. Emily Bronte", 25, 25, 1, "Tue/Thu",
-                "9-12 PM", "Room 101"));
-        courses.add(new Course("English", "Literature Basics", "002",
-                "Prof. Emily Bronte", 25, 25, 2, "Mon/Wed",
-                "10-12 PM", "Room 101"));
-        courses.add(new Course("Computer Science", "Introduction to Programming", "003",
-                "Dr. Grace Hopper", 42, 40, 1, "Tue/Thu",
-                "12-2 PM", "Room 103"));
-
-
-
-
-
 
     }
+
 
 
     //Contains course details (e.g., courseId, courseName, subject, capacity).
