@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAO {
+    // Handles CRUD operations
+
+
     // List of courses
     private List<Course> courses = new ArrayList<>();
 
@@ -16,46 +19,46 @@ public class CourseDAO {
     }
 
     private void initializeCourses(){
-        courses.add(new Course("Mathematics", "Calculus I", "001",
+        courses.add(new Course("Mathematics", "Calculus I", 1,
                 "Dr. Alan Turing", 30, 25, 1, "Mon/Wed",
-                "9:00-11:00 AM", "Room 100"));
-        courses.add(new Course("English", "Literature Basics", "002",
+                "9:00-11:00 AM", "Room 101", "12/15/2025", "9:00 AM"));
+        courses.add(new Course("English", "Literature Basics", 2,
                 "Prof. Emily Bronte", 25, 25, 1, "Tue/Thu",
-                "9:00-12:00 PM", "Room 101"));
-        courses.add(new Course("English", "Literature Basics", "002",
+                "9:00-12:00 PM", "Room 102", "12/16/2025", "10:00 AM"));
+        courses.add(new Course("English", "Literature Basics", 2,
                 "Prof. Emily Bronte", 25, 25, 2, "Mon/Wed",
-                "10:00-12:00 PM", "Room 101"));
-        courses.add(new Course("Computer Science", "Introduction to Programming", "003",
-                "Dr. Grace Hopper", 42, 40, 1, "Tue/Thu",
-                "12:00-2:00 PM", "Room 103"));
-        courses.add(new Course("Chemistry", "Introduction to Chemistry", "004",
-                "Albozr Gharabaghi", 50, 48, 1, "Mon/Thu",
-                "3:00-4:00 PM", "Room 104"));
-        courses.add(new Course("Chemistry", "Introduction to Chemistry", "004",
-                "Albozr Gharabaghi", 50, 48, 2, "Mon/Tue",
-                "5:00-6:00 PM", "Room 104"));
-        courses.add(new Course("Chemistry", "Introduction to Chemistry", "004",
-                "Albozr Gharabaghi", 50, 48, 3, "Fri/Thur",
-                "2:00-3:00 PM", "Room 104"));
-        courses.add(new Course("English", "Introduction to French", "005",
+                "10:00-12:00 PM", "Room 102", "12/16/2025", "10:00 AM"));
+        courses.add(new Course("Computer Science", "Introduction to Programming", 3,
+                "Prof. Bahar Nozari", 42, 40, 1, "Tue/Thu",
+                "12:00-2:00 PM", "Room 103", "12/16/2025", "12:30 PM"));
+        courses.add(new Course("Chemistry", "Introduction to Chemistry", 4,
+                "Dr. Lucka Lucku", 50, 48, 1, "Mon/Thu",
+                "3:00-4:00 PM", "Room 201", "12/14/2025", "4:00 PM"));
+        courses.add(new Course("Chemistry", "Introduction to Chemistry", 4,
+                "Dr. Lucka Lucku", 50, 48, 2, "Mon/Tue",
+                "5:00-6:00 PM", "Room 201", "12/14/2025", "4:00 PM"));
+        courses.add(new Course("Chemistry", "Introduction to Chemistry", 4,
+                "Dr. Lucka Lucku", 50, 48, 3, "Fri/Thur",
+                "2:00-3:00 PM", "Room 201", "12/14/2025", "4:00 PM"));
+        courses.add(new Course("English", "Introduction to French", 5,
                 "Dr. Lakyn Copeland", 25, 25, 1, "Tue/Thu",
-                "4:30-5:30 PM", "Room 101"));
-        courses.add(new Course("English", "Introduction to French", "005",
+                "4:30-5:30 PM", "Room 202", "12/13/2025", "10:00 AM"));
+        courses.add(new Course("English", "Introduction to French", 5,
                 "Dr. Lakyn Copeland", 25, 25, 2, "Tue/Thu",
-                "5:30-6:30 PM", "Room 101"));
-        courses.add(new Course("Engineering", "Water Resources", "006",
+                "5:30-6:30 PM", "Room 202", "12/13/2025", "10:00 AM"));
+        courses.add(new Course("Engineering", "Water Resources", 6,
                 "Albozr Gharabaghi", 50, 50, 1, "Mon/Fri",
-                "9:00-10:30 AM", "Room 104"));
+                "9:00-10:30 AM", "Room 203", "12/01/2025", "9:00 AM"));
     }
 
     // Search course by Course Code
-    public List<Course> getCourseByCode(String Code){
-        if(Code == null || Code.trim().equals("")){
-            throw new IllegalArgumentException("Please enter a course code");
+    public List<Course> getCourseByCode(int Code){
+        if(Code < 1){
+            throw new IllegalArgumentException("Invalid course code.");
         }
         List<Course> matchingCodes = new ArrayList<>();
         for(Course course : courses){
-            if(course.getCourseCode().equals(Code)){
+            if(course.getCourseCode() == Code){
                 matchingCodes.add(course);
             }
         }
@@ -67,8 +70,8 @@ public class CourseDAO {
 
     // Search course by name
     public List<Course> getCourseByName(String Name){
-        if(Name == null){
-            throw new IllegalArgumentException("Please enter a name for the course");
+        if(Name == null || Name.trim().isEmpty()){
+            throw new IllegalArgumentException("Please enter a course name");
         }
         List<Course> matchingCourses = new ArrayList<>();
         for(Course course : courses){
@@ -88,30 +91,34 @@ public class CourseDAO {
     }
 
     //add courses
-    public Course addCourse(Course course){
-        if(course == null){
-            throw new IllegalArgumentException("Please enter a course name");
+    public boolean addCourse(Course course) {
+        if (course == null || course.getCourseName().isEmpty() || course.getCourseCode() < 1) {
+            throw new IllegalArgumentException("Invalid course data.");
         }
-        courses.add(course);
-        return course;
+        return courses.add(course);
     }
 
-    //delete courses
-    public Course deleteCourse(Course course){
-        if(course == null){
-            throw new IllegalArgumentException("Please enter a course");
+    // Delete course by course code
+    public boolean deleteCourse(int courseCode) {
+        return courses.removeIf(course -> course.getCourseCode() == courseCode);
+    }
+
+    // Update course
+    public boolean updateCourse(Course updatedCourse) {
+        if (updatedCourse == null || updatedCourse.getCourseCode() < 1) {
+            throw new IllegalArgumentException("Invalid course data.");
         }
-        courses.remove(course);
-        return course;
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getCourseCode() == updatedCourse.getCourseCode()) {
+                courses.set(i, updatedCourse);
+                return true;
+            }
+        }
+        return false; // Course not found
     }
 
-    //update courses
-    public Course updateCourse(Course course){
-        int index = courses.indexOf(course);
-        courses.set(index, course);
-        return course;
-    }
 
+    @Override
     public String toString(){
         return courses.toString();
     }
