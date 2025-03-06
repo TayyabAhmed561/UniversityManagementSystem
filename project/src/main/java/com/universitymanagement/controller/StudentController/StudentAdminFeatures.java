@@ -3,7 +3,7 @@ package com.universitymanagement.controller.StudentController;
 import com.universitymanagement.dao.StudentDAO;
 import com.universitymanagement.dao.StudentDAO.CourseRecord;
 import com.universitymanagement.model.Student;
-//5
+
 public class StudentAdminFeatures {
     private StudentDAO dao;
 

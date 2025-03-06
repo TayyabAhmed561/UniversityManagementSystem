@@ -48,9 +48,14 @@ public class StudentDAO {
         students.add(new Student("S20250002", "Bob Johnson", "456 Oak St.", "555-5678", "bob@example.edu", "Graduate", "Fall 2025"));
         students.add(new Student("S20250003", "Carol Williams", "789 Pine St.", "555-9012", "carol@example.edu", "PhD", "Fall 2025"));
 
-        // Initialize courses
-        courses.put("CS201", new CourseRecord("Introduction to Programming", "CS201", "Computer Science", "Section 1", 30, "Mon 10:00-11:30", "2025-12-15 09:00", "Room 101"));
-        courses.put("HIST101", new CourseRecord("History 101", "HIST101", "History", "Section 1", 25, "Wed 14:00-15:30", "2025-12-16 13:00", "Room 202"));
+        // Initialize courses with teacher names
+        CourseRecord cs201 = new CourseRecord("Introduction to Programming", "CS201", "Computer Science", "Section 1", 30, "Mon 10:00-11:30", "2025-12-15 09:00", "Room 101");
+        cs201.teacherName = "Dr. Smith";
+        courses.put("CS201", cs201);
+
+        CourseRecord hist101 = new CourseRecord("History 101", "HIST101", "History", "Section 1", 25, "Wed 14:00-15:30", "2025-12-16 13:00", "Room 202");
+        hist101.teacherName = "Dr. Jones";
+        courses.put("HIST101", hist101);
     }
 
     // Student operations
@@ -59,7 +64,7 @@ public class StudentDAO {
     }
 
     public void deleteStudent(String studentId) {
-        students.removeIf(student -> student.id.equals(studentId));
+        students.removeIf(student -> student.getId().equals(studentId));
         // Remove student from all courses
         for (CourseRecord course : courses.values()) {
             course.enrolledStudents.remove(studentId);
@@ -67,7 +72,7 @@ public class StudentDAO {
     }
 
     public Student getStudentById(String studentId) {
-        return students.stream().filter(student -> student.id.equals(studentId)).findFirst().orElse(null);
+        return students.stream().filter(student -> student.getId().equals(studentId)).findFirst().orElse(null);
     }
 
     public List<Student> getAllStudents() {

@@ -3,7 +3,7 @@ package com.universitymanagement.controller.StudentController;
 import com.universitymanagement.dao.StudentDAO;
 import com.universitymanagement.dao.StudentDAO.CourseRecord;
 import com.universitymanagement.model.Student;
-//5
+
 public class StudentFacultyFeatures {
     private StudentDAO dao;
 
@@ -13,7 +13,7 @@ public class StudentFacultyFeatures {
 
     public void viewStudentInformation() {
         for (Student student : dao.getAllStudents()) {
-            System.out.println("Student ID: " + student.id + " | Name: " + student.name);
+            System.out.println("Student ID: " + student.getId() + " | Name: " + student.getName());
         }
     }
 
@@ -24,7 +24,7 @@ public class StudentFacultyFeatures {
             for (String studentId : course.enrolledStudents) {
                 Student student = dao.getStudentById(studentId);
                 if (student != null) {
-                    System.out.println(student.id + " | " + student.name);
+                    System.out.println(student.getId() + " | " + student.getName());
                 }
             }
         } else {
@@ -35,7 +35,7 @@ public class StudentFacultyFeatures {
     public void viewCoursesTaught(String teacherName) {
         System.out.println("Courses taught by " + teacherName + ":");
         for (CourseRecord course : dao.getAllCourses()) {
-            if (teacherName.equals(course.teacherName)) {
+            if (teacherName != null && teacherName.equals(course.teacherName)) {
                 System.out.println("Course Name: " + course.courseName + " | Code: " + course.courseCode);
                 System.out.println("Lecture Time: " + course.lectureTime + " | Location: " + course.location);
                 System.out.println("----------------------------");

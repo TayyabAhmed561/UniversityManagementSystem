@@ -73,7 +73,7 @@ public class Student {
     public String getUsername() { return username; }
 
     public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) { this.password = password; } // In a real app, hash the password
 
     public boolean isTuitionPaid() { return isTuitionPaid; }
     public void setTuitionPaid(boolean isTuitionPaid) { this.isTuitionPaid = isTuitionPaid; }
@@ -126,5 +126,29 @@ public class Student {
 
     private void updateProgress() {
         progress = Math.min(100, grades.size() * 10.0); // 10% per course completed
+    }
+
+    // Added method to view student profile
+    public void viewProfile() {
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Address: " + address);
+        System.out.println("Phone: " + phone);
+        System.out.println("Email: " + email);
+        System.out.println("Status: " + status);
+        System.out.println("Semester: " + semester);
+        System.out.println("Tuition Paid: " + (isTuitionPaid ? "Yes" : "No"));
+    }
+
+    // Added method to pay tuition
+    public void payTuition() {
+        setTuitionPaid(true);
+        System.out.println("Tuition paid successfully.");
+    }
+
+    // Added method to change password (wrapper for setPassword)
+    public void changePassword(String newPassword) {
+        setPassword(newPassword);
+        System.out.println("Password changed successfully.");
     }
 }
