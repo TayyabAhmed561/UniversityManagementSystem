@@ -2,7 +2,7 @@ package com.universitymanagement.controller.StudentController;
 
 import com.universitymanagement.model.Student;
 import java.util.Scanner;
-
+//5
 public class StudentStudentFeatures {
     private Student student;
     private static final Scanner scanner = new Scanner(System.in);
@@ -10,7 +10,6 @@ public class StudentStudentFeatures {
     public StudentStudentFeatures(Student student) {
         this.student = student;
     }
-
     public void viewProfile() {
         student.viewProfile();
     }
@@ -42,7 +41,7 @@ public class StudentStudentFeatures {
         if (!student.isTuitionPaid()) {
             System.out.println("Pay now? (yes/no)");
             String response = scanner.nextLine();
-            if (response.equalsIgnoreCase("yes")) {
+            if (response.equalsIgnoreCase("yes")) { //3
                 student.payTuition();
             }
         }
