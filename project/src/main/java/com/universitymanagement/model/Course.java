@@ -6,7 +6,7 @@ import java.util.List;
 public class Course {
     private String subjectName;
     private String courseName;
-    private String courseCode;
+    private int courseCode;
     private String instructor;
     private int capacity;
     private int currentEnrollment;
@@ -14,10 +14,13 @@ public class Course {
     private String meetingDays;
     private String meetingTime;
     private String meetingLocation;
+    private String finalExamDate;
+    private String finalExamTime;
 
     // Course constructor
-    public Course(String subjectName, String courseName, String courseCode,String instructor, int capacity,
-                  int currentEnrollment, int sectionID, String meetingDays, String meetingTime, String meetingLocation)
+    public Course(String subjectName, String courseName, int courseCode,String instructor, int capacity,
+                  int currentEnrollment, int sectionID, String meetingDays, String meetingTime, String meetingLocation,
+                  String finalExamDate, String finalExamTime)
     {
         this.subjectName = subjectName;
         this.courseName = courseName;
@@ -29,6 +32,8 @@ public class Course {
         this.meetingDays = meetingDays;
         this.meetingTime = meetingTime;
         this.meetingLocation = meetingLocation;
+        this.finalExamDate = finalExamDate;
+        this.finalExamTime = finalExamTime;
     }
 
     // Getter & Setter methods
@@ -46,10 +51,10 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getCourseCode() {
+    public int getCourseCode() {
         return courseCode;
     }
-    public void setCourseCode(String courseCode) {
+    public void setCourseCode(int courseCode) {
         this.courseCode = courseCode;
     }
 
@@ -101,6 +106,13 @@ public class Course {
     public void setMeetingLocation(String meetingLocation) {
         this.meetingLocation = meetingLocation;
     }
+
+    public String getFinalExamDate() { return finalExamDate; }
+    public void setFinalExamDate(String finalExamDate) { this.finalExamDate = finalExamDate; }
+
+    public String getFinalExamTime() { return finalExamTime; }
+    public void setFinalExamTime(String finalExamTime) { this.finalExamTime = finalExamTime; }
+
 
     //consider using toString method for debugging/logging
 
