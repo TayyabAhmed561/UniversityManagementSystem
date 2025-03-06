@@ -28,15 +28,25 @@ public class EventDAO {
     public void addEvent(Event event) {
         if (!eventExists(event.getEventCode())) {
             events.add(event);
-        } 
+            System.out.println("Event with code " + event.getEventCode() + " has been added.");
+        } else {
+            System.out.println("Failure: Event with code " + event.getEventCode() + " already exists.");
+        }
     }
 
     // Method to delete and event from the list
     public void deleteEvent(String eventCode) {
+        boolean eventFound = false;
         for (Event event : events) {
             if (event.getEventCode().equals(eventCode)) {
                 events.remove(event);
+                System.out.println("Event with code " + eventCode + " has been deleted.");
+                eventFound = true;
+                break;
             }
+        }
+        if (!eventFound) {
+            System.out.println("Failure: Event with code " + eventCode + " not found.");
         }
     }
 
