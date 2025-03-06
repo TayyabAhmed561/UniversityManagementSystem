@@ -1,10 +1,32 @@
 package com.universitymanagement.controller.FacultyController;
+import com.universitymanagement.model.Faculty;
+import com.universitymanagement.service.FacultyService;
+
+import java.util.List;
 
 public class FacultyAdminFeatures {
-    //Add Faculty Member: Create new faculty profiles. (with default password and
-    //unique email as username)
-    //- Edit Faculty Member: Update faculty information.
-    //- Delete Faculty Member: Remove faculty profiles when necessary.
-    //- View Faculty Profile: Access detailed information about a faculty member.
-    //- Assign Courses: Manage the courses assigned to faculty members
+    private FacultyService facultyService = new FacultyService();
+
+    // Add a new faculty member
+    public void addFaculty(Faculty faculty) {
+        facultyService.registerFaculty(faculty);
+    }
+
+    // Update faculty profile
+    public void updateFaculty(Faculty faculty) {
+        facultyService.updateFacultyProfile(faculty);
+    }
+
+    // Remove a faculty member
+    public void deleteFaculty(String email) {
+        facultyService.removeFaculty(email);
+    }
+
+    // View all faculty members
+    public void listFaculty() {
+        List<Faculty> facultyList = facultyService.listAllFaculty();
+        for (Faculty faculty : facultyList) {
+            System.out.println(faculty);
+        }
+    }
 }
