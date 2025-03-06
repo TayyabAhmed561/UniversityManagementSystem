@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.FacultyController.FacultyDashboardController"
+      style="-fx-padding: 20; -fx-alignment: center;">
+
+    <Label text="Faculty Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Button text="Manage Courses" onAction="#manageCourses"/>
+    <Button text="View Student Performance" onAction="#viewPerformance"/>
+</VBox>

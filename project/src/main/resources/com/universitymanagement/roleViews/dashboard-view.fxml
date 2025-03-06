@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.universitymanagement.controller.dashboardController"
+            style="-fx-background-color: linear-gradient(to bottom, #B22222, #FFD100);">
+
+    <!-- Top Menu Bar for Navigation -->
+    <top>
+        <MenuBar>
+            <Menu text="Dashboard">
+                <MenuItem text="Home" onAction="#loadHome"/>
+                <MenuItem text="Logout" onAction="#handleLogout"/>
+            </Menu>
+            <Menu text="Modules">
+                <MenuItem text="Course Management" onAction="#loadCourseManagement"/>
+                <MenuItem text="Subject Management" onAction="#loadSubjectManagement"/>
+                <MenuItem text="Student Management" onAction="#loadStudentManagement"/>
+                <MenuItem text="Faculty Management" onAction="#loadFacultyManagement"/>
+                <MenuItem text="Event Management" onAction="#loadEventManagement"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Central Content Pane -->
+    <center>
+        <StackPane fx:id="contentPane" />
+    </center>
+
+</BorderPane>
