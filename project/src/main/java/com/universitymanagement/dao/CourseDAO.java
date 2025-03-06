@@ -63,15 +63,16 @@ public class CourseDAO {
             }
         }
         if (matchingCodes.isEmpty()){
-            return null;
+            System.out.println("No course found with code " + Code);
         }
+        System.out.println("Matching codes: ");
         return matchingCodes;
     }
 
     // Search course by name
     public List<Course> getCourseByName(String Name){
         if(Name == null || Name.trim().isEmpty()){
-            throw new IllegalArgumentException("Please enter a course name");
+            System.out.println("Enter a course name.");
         }
         List<Course> matchingCourses = new ArrayList<>();
         for(Course course : courses){
@@ -80,7 +81,7 @@ public class CourseDAO {
             }
         }
         if(matchingCourses.isEmpty()){
-            return null;
+            System.out.println("No course found with name " + Name);
         }
         return matchingCourses;
     }
@@ -93,20 +94,22 @@ public class CourseDAO {
     //add courses
     public boolean addCourse(Course course) {
         if (course == null || course.getCourseName().isEmpty() || course.getCourseCode() < 1) {
-            throw new IllegalArgumentException("Invalid course data.");
+            System.out.println("Enter a course name.");
         }
+        System.out.println("Course added successfully.");
         return courses.add(course);
     }
 
     // Delete course by course code
     public boolean deleteCourse(int courseCode) {
+        System.out.println("Course deleted successfully.");
         return courses.removeIf(course -> course.getCourseCode() == courseCode);
     }
 
     // Update course
     public boolean updateCourse(Course updatedCourse) {
         if (updatedCourse == null || updatedCourse.getCourseCode() < 1) {
-            throw new IllegalArgumentException("Invalid course data.");
+            System.out.println("Invalid course data.");
         }
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i).getCourseCode() == updatedCourse.getCourseCode()) {
