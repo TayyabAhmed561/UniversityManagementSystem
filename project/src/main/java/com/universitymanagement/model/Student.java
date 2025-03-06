@@ -5,20 +5,20 @@ import java.util.List;
 import java.util.Random;
 
 public class Student {
-    public String id;
-    public String name;
+    private String id;
+    private String name;
     private String address;
     private String phone;
     private String email;
-    public String status; // Undergraduate, Graduate, PhD
-    public String semester;
-    public String username;
+    private String status; // Undergraduate, Graduate, PhD
+    private String semester;
+    private String username;
     private String password;
     private boolean isTuitionPaid;
-    public List<String> enrolledCourses = new ArrayList<>(); // Course codes
+    private List<String> enrolledCourses = new ArrayList<>(); // Course codes
     private List<CourseGrade> grades = new ArrayList<>();
-    public String thesisTitle; // For PhD students
-    public double progress; // Percentage of program completed
+    private String thesisTitle; // For PhD students
+    private double progress; // Percentage of program completed
 
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final Random rand = new Random();
@@ -48,10 +48,42 @@ public class Student {
         if (status.equalsIgnoreCase("PhD")) this.thesisTitle = "TBD";
     }
 
-    // Getter for Student ID
-    public String getStudentID() {
-        return id;
-    }
+    // Getters and Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public String getSemester() { return semester; }
+    public void setSemester(String semester) { this.semester = semester; }
+
+    public String getUsername() { return username; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public boolean isTuitionPaid() { return isTuitionPaid; }
+    public void setTuitionPaid(boolean isTuitionPaid) { this.isTuitionPaid = isTuitionPaid; }
+
+    public List<String> getEnrolledCourses() { return enrolledCourses; }
+
+    public double getProgress() { return progress; }
+
+    public String getThesisTitle() { return thesisTitle; }
+    public void setThesisTitle(String thesisTitle) { this.thesisTitle = thesisTitle; }
 
     private static String generateRandomPassword() {
         StringBuilder sb = new StringBuilder(8);
@@ -88,71 +120,11 @@ public class Student {
         updateProgress();
     }
 
-    public void viewGrades() {
-        if (grades.isEmpty()) {
-            System.out.println("No grades available.");
-        } else {
-            System.out.println("Grades for " + name + ":");
-            for (CourseGrade courseGrade : grades) {
-                System.out.println(courseGrade.courseCode + ": " + courseGrade.grade);
-            }
-        }
-    }
-
-    public void viewProfile() {
-        displayStudentDetails();
-        System.out.println("Enrolled Courses: " + String.join(", ", enrolledCourses));
-    }
-
-    public void displayStudentDetails() {
-        System.out.println("ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
-        System.out.println("Address: " + address);
-        System.out.println("Phone: " + phone);
-        System.out.println("Email: " + email);
-        System.out.println("Status: " + status);
-        System.out.println("Semester: " + semester);
-        System.out.println("Tuition Paid: " + (isTuitionPaid ? "Yes" : "No"));
-        if (status.equalsIgnoreCase("PhD")) {
-            System.out.println("Thesis Title: " + thesisTitle);
-        }
-        System.out.println("Progress: " + progress + "%");
-        System.out.println("----------------------------");
-    }
-
-    public void updateStudentDetails(String newAddress, String newPhone, String newEmail) {
-        this.address = newAddress;
-        this.phone = newPhone;
-        this.email = newEmail;
-        System.out.println("Details updated.");
-    }
-
-    public void changePassword(String newPassword) {
-        this.password = newPassword;
-        System.out.println("Password updated.");
-    }
-
-    public void payTuition() {
-        int tuition = status.equalsIgnoreCase("Graduate") ? 4000 : 5000;
-        System.out.println("Tuition fee: $" + tuition);
-        isTuitionPaid = true;
-        System.out.println("Payment successful.");
-    }
-
-    public boolean isTuitionPaid() {
-        return isTuitionPaid;
+    public void displayStudentId() {
+        System.out.println("Student ID: " + id);
     }
 
     private void updateProgress() {
         progress = Math.min(100, grades.size() * 10.0); // 10% per course completed
-    }
-
-    public void setThesisTitle(String title) {
-        if (status.equalsIgnoreCase("PhD")) {
-            this.thesisTitle = title;
-            System.out.println("Thesis title updated.");
-        }
     }
 }
