@@ -32,7 +32,7 @@
                 <Label text="Student Login" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #B22222;" />
                 <TextField fx:id="studentIdField" promptText="Student ID" />
                 <PasswordField fx:id="studentPasswordField" promptText="Password" />
-                <Button text="Login as Student" onAction="#handleStudentLoginAction" />
+                <Button text="Login as Student" onAction="#handleLoginAction" />
             </VBox>
 
             <VBox spacing="20" alignment="CENTER"
@@ -44,7 +44,7 @@
                 <Label text="Faculty Login" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #FFD100;" />
                 <TextField fx:id="facultyIdField" promptText="Faculty ID" />
                 <PasswordField fx:id="facultyPasswordField" promptText="Password" />
-                <Button text="Login as Faculty" onAction="#handleFacultyLoginAction" />
+                <Button text="Login as Faculty" onAction="#handleLoginAction" />
             </VBox>
 
             <VBox spacing="20" alignment="CENTER"
@@ -56,7 +56,7 @@
                 <Label text="Admin Login" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #000000;" />
                 <TextField fx:id="adminIdField" promptText="Admin ID" />
                 <PasswordField fx:id="adminPasswordField" promptText="Password" />
-                <Button text="Login as Admin" onAction="#handleAdminLoginAction" />
+                <Button text="Login as Admin" onAction="#handleLoginAction" />
             </VBox>
 
         </HBox>

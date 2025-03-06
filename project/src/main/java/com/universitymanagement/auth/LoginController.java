@@ -2,73 +2,80 @@ package com.universitymanagement.auth;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class LoginController {
 
-    @FXML private TextField studentIdField;
-    @FXML private PasswordField studentPasswordField;
-    @FXML private TextField facultyIdField;
-    @FXML private PasswordField facultyPasswordField;
-    @FXML private TextField adminIdField;
-    @FXML private PasswordField adminPasswordField;
+    @FXML
+    private TextField studentIdField;
+    @FXML
+    private PasswordField studentPasswordField;
+    @FXML
+    private TextField facultyIdField;
+    @FXML
+    private PasswordField facultyPasswordField;
+    @FXML
+    private TextField adminIdField;
+    @FXML
+    private PasswordField adminPasswordField;
 
     @FXML
-    public void handleStudentLoginAction(ActionEvent event) {
-        loginUser("student", studentIdField.getText(), studentPasswordField.getText(),
-                "/roleViews/student-dashboard-view.fxml", "Student Dashboard");
-    }
+    public void handleLoginAction(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        String fxmlFile = "";
+        String title = "";
 
-    @FXML
-    public void handleFacultyLoginAction(ActionEvent event) {
-        loginUser("faculty", facultyIdField.getText(), facultyPasswordField.getText(),
-                "/roleViews/faculty-dashboard-view.fxml", "Faculty Dashboard");
-    }
-
-    @FXML
-    public void handleAdminLoginAction(ActionEvent event) {
-        loginUser("admin", adminIdField.getText(), adminPasswordField.getText(),
-                "/roleViews/admin-dashboard-view.fxml", "Admin Dashboard");
-    }
-
-    private void loginUser(String expectedUser, String enteredUser, String password, String fxmlPath, String title) {
-        if (expectedUser.equals(enteredUser) && "password".equals(password)) {
-            try {
-                // Avoid double prefixing
-                String fullPath = "/roleViews/" + fxmlPath;
-                System.out.println("Attempting to load FXML file from: " + fullPath);
-
-                URL resource = getClass().getResource(fullPath);
-                if (resource == null) {
-                    System.out.println("FXML file not found: " + fullPath);
-                    showAlert("Error", "FXML file not found: " + fullPath);
-                    return;
-                }
-
-                Parent dashboardRoot = FXMLLoader.load(resource);
-                Stage stage = (Stage) adminIdField.getScene().getWindow();
-                stage.setTitle(title);
-                stage.setScene(new Scene(dashboardRoot));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error", "Failed to load the dashboard view: " + e.getMessage());
+        if (clickedButton.getText().equals("Login as Student")) {
+            if (validateLogin("student", studentIdField.getText(), studentPasswordField.getText())) {
+                fxmlFile = "/com/universitymanagement/roleViews/student-dashboard-view.fxml";
+                title = "Student Dashboard";
             }
+        } else if (clickedButton.getText().equals("Login as Faculty")) {
+            if (validateLogin("faculty", facultyIdField.getText(), facultyPasswordField.getText())) {
+                fxmlFile = "/com/universitymanagement/roleViews/faculty-dashboard-view.fxml";
+                title = "Faculty Dashboard";
+            }
+        } else if (clickedButton.getText().equals("Login as Admin")) {
+            if (validateLogin("admin", adminIdField.getText(), adminPasswordField.getText())) {
+                fxmlFile = "/com/universitymanagement/roleViews/admin-dashboard-view.fxml";
+                title = "Admin Dashboard";
+            }
+        }
+
+        if (!fxmlFile.isEmpty()) {
+            loadDashboard(fxmlFile, title);
         } else {
             showAlert("Login Failed", "Invalid ID or password.");
         }
     }
 
+    private boolean validateLogin(String expectedUser, String enteredUser, String password) {
+        return expectedUser.equals(enteredUser) && "password".equals(password);
+    }
 
+    private void loadDashboard(String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) studentIdField.getScene().getWindow();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the dashboard view: " + e.getMessage());
+        }
+    }
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -48,6 +48,11 @@ public class Student {
         if (status.equalsIgnoreCase("PhD")) this.thesisTitle = "TBD";
     }
 
+    // Getter for Student ID
+    public String getStudentID() {
+        return id;
+    }
+
     private static String generateRandomPassword() {
         StringBuilder sb = new StringBuilder(8);
         for (int i = 0; i < 8; i++) {

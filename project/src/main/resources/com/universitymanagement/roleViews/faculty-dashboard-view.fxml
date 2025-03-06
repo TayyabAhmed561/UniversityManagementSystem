@@ -5,9 +5,25 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.universitymanagement.controller.FacultyController.FacultyDashboardController"
-      style="-fx-padding: 20; -fx-alignment: center;">
+      style="-fx-padding: 20; -fx-alignment: center; -fx-spacing: 15;">
 
-    <Label text="Faculty Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-    <Button text="Manage Courses" onAction="#manageCourses"/>
-    <Button text="View Student Performance" onAction="#viewPerformance"/>
+    <Label text="Faculty Dashboard"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <Button text="Manage Courses"
+            onAction="#manageCourses"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+
+    <Button text="View Student Performance"
+            onAction="#viewPerformance"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+
+    <Button text="View Subjects"
+            onAction="#handleViewSubjects"
+            style="-fx-background-color: #32CD32; -fx-text-fill: white;" />
+
+    <Button text="Logout"
+            onAction="#handleLogoutAction"
+            style="-fx-background-color: #B22222; -fx-text-fill: white;" />
+
 </VBox>
