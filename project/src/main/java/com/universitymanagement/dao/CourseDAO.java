@@ -54,7 +54,7 @@ public class CourseDAO {
     // Search course by Course Code
     public List<Course> getCourseByCode(int Code){
         if(Code < 1){
-            throw new IllegalArgumentException("Please enter a course code");
+            throw new IllegalArgumentException("Invalid course code.");
         }
         List<Course> matchingCodes = new ArrayList<>();
         for(Course course : courses){
@@ -70,8 +70,8 @@ public class CourseDAO {
 
     // Search course by name
     public List<Course> getCourseByName(String Name){
-        if(Name == null){
-            throw new IllegalArgumentException("Please enter a name for the course");
+        if(Name == null || Name.trim().isEmpty()){
+            throw new IllegalArgumentException("Please enter a course name");
         }
         List<Course> matchingCourses = new ArrayList<>();
         for(Course course : courses){
@@ -91,30 +91,34 @@ public class CourseDAO {
     }
 
     //add courses
-    public Course addCourse(Course course){
-        if(course == null){
-            throw new IllegalArgumentException("Please enter a course name");
+    public boolean addCourse(Course course) {
+        if (course == null || course.getCourseName().isEmpty() || course.getCourseCode() < 1) {
+            throw new IllegalArgumentException("Invalid course data.");
         }
-        courses.add(course);
-        return course;
+        return courses.add(course);
     }
 
-    //delete courses
-    public Course deleteCourse(Course course){
-        if(course == null){
-            throw new IllegalArgumentException("Please enter a course");
+    // Delete course by course code
+    public boolean deleteCourse(int courseCode) {
+        return courses.removeIf(course -> course.getCourseCode() == courseCode);
+    }
+
+    // Update course
+    public boolean updateCourse(Course updatedCourse) {
+        if (updatedCourse == null || updatedCourse.getCourseCode() < 1) {
+            throw new IllegalArgumentException("Invalid course data.");
         }
-        courses.remove(course);
-        return course;
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i).getCourseCode() == updatedCourse.getCourseCode()) {
+                courses.set(i, updatedCourse);
+                return true;
+            }
+        }
+        return false; // Course not found
     }
 
-    //update courses
-    public Course updateCourse(Course course){
-        int index = courses.indexOf(course);
-        courses.set(index, course);
-        return course;
-    }
 
+    @Override
     public String toString(){
         return courses.toString();
     }
