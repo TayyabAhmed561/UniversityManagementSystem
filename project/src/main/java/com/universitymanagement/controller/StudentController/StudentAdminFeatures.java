@@ -1,91 +1,94 @@
 package com.universitymanagement.controller.StudentController;
 
-import java.util.List;
-import java.util.ArrayList;
+import com.universitymanagement.dao.StudentDAO;
+import com.universitymanagement.dao.StudentDAO.CourseRecord;
+import com.universitymanagement.model.Student;
 
-// Manages admin operations for students
 public class StudentAdminFeatures {
-    public List<Student> students;
+    private StudentDAO dao;
 
-    public StudentAdminFeatures() {
-        students = new ArrayList<>();
+    public StudentAdminFeatures(StudentDAO dao) {
+        this.dao = dao;
     }
 
-    // Add a new student
+    // Student Management
     public void addStudent(String id, String name, String address, String phone, String email, String status, String semester) {
-        students.add(new Student(id, name, address, phone, email, status, semester));
+        Student student = new Student(id, name, address, phone, email, status, semester);
+        dao.addStudent(student);
         System.out.println("Student added successfully.");
     }
 
-    // Delete a student
     public void deleteStudent(String studentId) {
-        students.removeIf(student -> student.id.equals(studentId));
+        dao.deleteStudent(studentId);
         System.out.println("Student deleted successfully.");
     }
 
-    // View student profile
     public void viewStudentProfile(String studentId) {
-        for (Student student : students) {
-            if (student.id.equals(studentId)) {
-                student.viewProfile();
-                return;
-            }
+        Student student = dao.getStudentById(studentId);
+        if (student != null) {
+            student.viewProfile();
+        } else {
+            System.out.println("Student not found.");
         }
-        System.out.println("Student not found.");
     }
 
-    // Manage enrollments
-    public void manageEnrollments(String studentId, String course) {
-        for (Student student : students) {
-            if (student.id.equals(studentId)) {
-                student.enrollInCourse(course);
-                return;
-            }
+    public void manageEnrollments(String studentId, String courseCode) {
+        Student student = dao.getStudentById(studentId);
+        if (student != null && dao.enrollStudentInCourse(studentId, courseCode)) {
+            student.enrollInCourse(courseCode);
+        } else {
+            System.out.println("Enrollment failed: Student or course not found, or course is full.");
         }
-        System.out.println("Student not found.");
     }
 
-    // Drop a course for a student
-    public void dropCourse(String studentId, String course) {
-        for (Student student : students) {
-            if (student.id.equals(studentId)) {
-                student.dropCourse(course);
-                return;
-            }
+    public void assignGrade(String studentId, String courseCode, double grade) {
+        Student student = dao.getStudentById(studentId);
+        if (student != null) {
+            student.assignGrade(courseCode, grade);
+        } else {
+            System.out.println("Student not found.");
         }
-        System.out.println("Student not found.");
     }
 
-    // Assign a grade to a student
-    public void assignGrade(String studentId, String course, double grade) {
-        for (Student student : students) {
-            if (student.id.equals(studentId)) {
-                student.assignGrade(course, grade);
-                return;
-            }
-        }
-        System.out.println("Student not found.");
+    // Course Management
+    public void addCourse(String courseName, String courseCode, String subjectName, String sectionNumber, int capacity, String lectureTime, String finalExamDateTime, String location) {
+        CourseRecord course = new CourseRecord(courseName, courseCode, subjectName, sectionNumber, capacity, lectureTime, finalExamDateTime, location);
+        dao.addCourse(course);
+        System.out.println("Course added successfully.");
     }
 
-    // Track academic progress
-    public void progressTracking(String studentId) {
-        for (Student student : students) {
-            if (student.id.equals(studentId)) {
-                student.viewGrades();
-                return;
-            }
+    public void editCourse(String courseCode, String newLectureTime, String newLocation) {
+        CourseRecord course = dao.getCourseByCode(courseCode);
+        if (course != null) {
+            course.lectureTime = newLectureTime;
+            course.location = newLocation;
+            System.out.println("Course updated successfully.");
+        } else {
+            System.out.println("Course not found.");
         }
-        System.out.println("Student not found.");
     }
 
-    // Manage tuition
-    public void tuitionManagement(String studentId) {
-        for (Student student : students) {
-            if (student.id.equals(studentId)) {
-                student.tuitionManagement();
-                return;
-            }
+    public void deleteCourse(String courseCode) {
+        dao.deleteCourse(courseCode);
+        System.out.println("Course deleted successfully.");
+    }
+
+    public void viewCourses() {
+        for (CourseRecord course : dao.getAllCourses()) {
+            System.out.println("Course Name: " + course.courseName + " | Code: " + course.courseCode + " | Teacher: " + (course.teacherName != null ? course.teacherName : "Not assigned"));
+            System.out.println("Capacity: " + course.capacity + " | Enrolled: " + course.enrolledStudents.size());
+            System.out.println("Lecture Time: " + course.lectureTime + " | Location: " + course.location);
+            System.out.println("----------------------------");
         }
-        System.out.println("Student not found.");
+    }
+
+    public void assignFaculty(String courseCode, String teacherName) {
+        CourseRecord course = dao.getCourseByCode(courseCode);
+        if (course != null) {
+            course.teacherName = teacherName;
+            System.out.println("Teacher " + teacherName + " assigned to " + courseCode);
+        } else {
+            System.out.println("Course not found.");
+        }
     }
 }
