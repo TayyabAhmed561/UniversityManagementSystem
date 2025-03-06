@@ -18,11 +18,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class CourseStudentFeatures implements Initializable {
+public class CourseFacultyFeatures implements Initializable {
 
-    @FXML private TableView<Course> availableCoursesTable;
+    @FXML private TableView<Course> assignedCoursesTable;
     @FXML private TableColumn<Course, String> courseNameColumn;
-    @FXML private TableColumn<Course, Integer> courseCodeColumn;
+    @FXML private TableColumn<Course, String> instructorColumn;
 
     private CourseDAO courseDAO = new CourseDAO();
     private ObservableList<Course> courseList;
@@ -31,15 +31,20 @@ public class CourseStudentFeatures implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize table columns
         courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        courseCodeColumn.setCellValueFactory(new PropertyValueFactory<>("courseCode"));
+        instructorColumn.setCellValueFactory(new PropertyValueFactory<>("instructor"));
 
-        // Load available courses
-        courseList = FXCollections.observableArrayList(courseDAO.getAllCourses());
-        availableCoursesTable.setItems(courseList);
+        // Load courses assigned to the faculty (filter by instructor name, e.g., logged-in user)
+        String facultyName = "Dr. Alan Turing"; // Replace with actual logged-in faculty
+        courseList = FXCollections.observableArrayList();
+        for (Course course : courseDAO.getAllCourses()) {
+            if (course.getInstructor().equals(facultyName)) {
+                courseList.add(course);
+            }
+        }
+        assignedCoursesTable.setItems(courseList);
 
-        // Add registration logic (e.g., button action) here if needed
+        // Add update logic here if needed
     }
-    //View Courses: Access comprehensive information about courses.
-    //- View Enrollments: Faculty can view courses they teach; students can view
-    //courses they are enrolled in
+
+
 }
