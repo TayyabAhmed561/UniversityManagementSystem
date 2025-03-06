@@ -7,116 +7,67 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class AdminDashboardController {
 
     @FXML
     public void manageUsers(ActionEvent event) {
-        try {
-            loadView("/com/universitymanagement/roleViews/user-management-view.fxml", "User Management", event);
-        } catch (Exception e) {
-            showAlert("Error", "Failed to load user management view: " + e.getMessage());
-            e.printStackTrace();
-        }
+        loadView("/com/universitymanagement/roleViews/user-management-view.fxml", "User Management", event);
     }
 
     @FXML
     public void viewReports(ActionEvent event) {
-        try {
-            loadView("/com/universitymanagement/roleViews/reports-view.fxml", "Reports", event);
-        } catch (Exception e) {
-            showAlert("Error", "Failed to load reports view: " + e.getMessage());
-            e.printStackTrace();
-        }
+        loadView("/com/universitymanagement/roleViews/reports-view.fxml", "Reports", event);
     }
 
     @FXML
     public void handleManageSubjects(ActionEvent event) {
-        try {
-            loadView("/com/universitymanagement/roleViews/subjects-management-view.fxml", "Subject Management", event);
-        } catch (Exception e) {
-            showAlert("Error", "Failed to load subject management view: " + e.getMessage());
-            e.printStackTrace();
-        }
+        loadView("/com/universitymanagement/roleViews/subjects-management-view.fxml", "Subject Management", event);
     }
 
-    private void loadView(String fxmlFile, String title, ActionEvent event) throws IOException {
-        // Print the classpath for debugging
-        System.out.println("Attempting to load: " + fxmlFile);
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resourceURL = classLoader.getResource("");
-        if (resourceURL != null) {
-            System.out.println("Root resource directory: " + resourceURL.getPath());
-        } else {
-            System.out.println("Could not determine root resource directory.");
-        }
+    @FXML
+    public void handleViewSubjects(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/subjects-view.fxml", "View Subjects", event);
+    }
 
-        // Try different possible resource paths
-        Parent viewRoot = null;
-        IOException lastException = null;
+    @FXML
+    public void handleAddSubject(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/add-subject-view.fxml", "Add Subject", event);
+    }
 
-        // Add more potential paths
-        String[] possiblePaths = {
-                fxmlFile,
-                "/com/universitymanagement/roleViews/" + fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1),
-                "/roleViews/" + fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1),
-                "roleViews/" + fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1),
-                "/views/" + fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1),
-                "views/" + fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1),
-                "/" + fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1),
-                fxmlFile.substring(fxmlFile.lastIndexOf('/') + 1)
-        };
+    @FXML
+    public void handleEditSubject(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/edit-subject-view.fxml", "Edit Subject", event);
+    }
 
-        for (String path : possiblePaths) {
-            try {
-                System.out.println("Attempting to load: " + path);
-                URL url = getClass().getResource(path);
-                if (url != null) {
-                    System.out.println("Resource found at: " + url.toString());
-                    viewRoot = FXMLLoader.load(url);
-                    if (viewRoot != null) {
-                        System.out.println("Successfully loaded: " + path);
-                        break;
-                    }
-                } else {
-                    System.out.println("Resource not found at: " + path);
-                }
-            } catch (IOException e) {
-                lastException = e;
-                System.out.println("Failed to load: " + path + " - Error: " + e.getMessage());
-            }
-        }
+    @FXML
+    public void handleBackAction(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/admin-dashboard-view.fxml", "Admin Dashboard", event);
+    }
 
-        if (viewRoot == null) {
-            throw lastException != null ? lastException :
-                    new IOException("Could not find FXML resource. Please ensure the file exists.");
-        }
+    @FXML
+    public void handleLogoutAction(ActionEvent event) {
+        loadView("/com/universitymanagement/auth/login-view.fxml", "Login", event);
+        System.out.println("Logged out successfully.");
+    }
 
-        // Get current stage
-        Stage stage = (Stage) ((javafx.scene.Node) (event.getSource())).getScene().getWindow();
-        stage.setTitle(title);
-
+    private void loadView(String fxmlFile, String title, ActionEvent event) {
         try {
-            System.out.println("About to set scene with dashboard root");
+            Parent viewRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setTitle(title);
             stage.setScene(new Scene(viewRoot));
-            System.out.println("Scene set successfully");
             stage.show();
-            System.out.println("Stage shown successfully");
-        } catch (Exception e) {
-            System.err.println("Error setting scene: " + e.getMessage());
+        } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Scene Error", "Error setting scene: " + e.getMessage());
-            // Convert to IOException since that's what this method declares
-            throw new IOException("Error setting scene: " + e.getMessage());
+            showAlert("Error", "Failed to load the view: " + fxmlFile);
         }
     }
 
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

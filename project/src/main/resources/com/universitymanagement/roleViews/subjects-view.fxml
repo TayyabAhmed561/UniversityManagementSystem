@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.SubjectController.SubjectViewController"
+      style="-fx-padding: 20; -fx-alignment: center; -fx-spacing: 15;">
+
+    <Label text="Available Subjects" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <ListView fx:id="subjectListView" prefHeight="200" prefWidth="300" />
+
+    <Button text="Back" onAction="#handleBackAction"
+            style="-fx-background-color: #B22222; -fx-text-fill: white;" />
+</VBox>

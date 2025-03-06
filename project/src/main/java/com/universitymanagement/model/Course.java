@@ -1,138 +1,65 @@
 package com.universitymanagement.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Course {
-    private String subjectName;
+    private String department;
     private String courseName;
     private int courseCode;
     private String instructor;
     private int capacity;
-    private int currentEnrollment;
-    private int sectionID;
-    private String meetingDays;
-    private String meetingTime;
-    private String meetingLocation;
-    private String finalExamDate;
-    private String finalExamTime;
+    private int enrolled;
+    private int section;
+    private String days;
+    private String time;
+    private String room;
+    private String examDate;
+    private String examTime;
 
-    // Course constructor
-    public Course(String subjectName, String courseName, int courseCode, String instructor, int capacity,
-                  int currentEnrollment, int sectionID, String meetingDays, String meetingTime, String meetingLocation,
-                  String finalExamDate, String finalExamTime) {
-        this.subjectName = subjectName;
+    // Constructor
+    public Course(String department, String courseName, int courseCode,
+                  String instructor, int capacity, int enrolled, int section,
+                  String days, String time, String room, String examDate, String examTime) {
+        this.department = department;
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.instructor = instructor;
         this.capacity = capacity;
-        this.currentEnrollment = currentEnrollment;
-        this.sectionID = sectionID;
-        this.meetingDays = meetingDays;
-        this.meetingTime = meetingTime;
-        this.meetingLocation = meetingLocation;
-        this.finalExamDate = finalExamDate;
-        this.finalExamTime = finalExamTime;
+        this.enrolled = enrolled;
+        this.section = section;
+        this.days = days;
+        this.time = time;
+        this.room = room;
+        this.examDate = examDate;
+        this.examTime = examTime;
     }
 
-    // Getter & Setter methods
-    public String getSubjectName() {
-        return subjectName;
-    }
+    // Default constructor
+    public Course() {}
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
-    }
+    // Getters
+    public String getDepartment() { return department; }
+    public String getCourseName() { return courseName; }
+    public int getCourseCode() { return courseCode; }
+    public String getInstructor() { return instructor; }
+    public int getCapacity() { return capacity; }
+    public int getEnrolled() { return enrolled; }
+    public int getSection() { return section; }
+    public String getDays() { return days; }
+    public String getTime() { return time; }
+    public String getRoom() { return room; }
+    public String getExamDate() { return examDate; }
+    public String getExamTime() { return examTime; }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public int getCourseCode() {
-        return courseCode;
-    }
-
-    public void setCourseCode(int courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getCurrentEnrollment() {
-        return currentEnrollment;
-    }
-
-    public void setCurrentEnrollment(int currentEnrollment) {
-        this.currentEnrollment = currentEnrollment;
-    }
-
-    public int getSectionID() {
-        return sectionID;
-    }
-
-    public void setSectionID(int sectionID) {
-        this.sectionID = sectionID;
-    }
-
-    public String getMeetingDays() {
-        return meetingDays;
-    }
-
-    public void setMeetingDays(String meetingDays) {
-        this.meetingDays = meetingDays;
-    }
-
-    public String getMeetingTime() {
-        return meetingTime;
-    }
-
-    public void setMeetingTime(String meetingTime) {
-        this.meetingTime = meetingTime;
-    }
-
-    public String getMeetingLocation() {
-        return meetingLocation;
-    }
-
-    public void setMeetingLocation(String meetingLocation) {
-        this.meetingLocation = meetingLocation;
-    }
-
-    public String getFinalExamDate() {
-        return finalExamDate;
-    }
-
-    public void setFinalExamDate(String finalExamDate) {
-        this.finalExamDate = finalExamDate;
-    }
-
-    public String getFinalExamTime() {
-        return finalExamTime;
-    }
-
-    public void setFinalExamTime(String finalExamTime) {
-        this.finalExamTime = finalExamTime;
-    }
-
-
-    //consider using toString method for debugging/logging
-
+    // Setters
+    public void setDepartment(String department) { this.department = department; }
+    public void setCourseName(String courseName) { this.courseName = courseName; }
+    public void setCourseCode(int courseCode) { this.courseCode = courseCode; }
+    public void setInstructor(String instructor) { this.instructor = instructor; }
+    public void setCapacity(int capacity) { this.capacity = capacity; }
+    public void setEnrolled(int enrolled) { this.enrolled = enrolled; }
+    public void setSection(int section) { this.section = section; }
+    public void setDays(String days) { this.days = days; }
+    public void setTime(String time) { this.time = time; }
+    public void setRoom(String room) { this.room = room; }
+    public void setExamDate(String examDate) { this.examDate = examDate; }
+    public void setExamTime(String examTime) { this.examTime = examTime; }
 }
