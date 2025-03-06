@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.StudentController.StudentDashboardController"
+      style="-fx-padding: 20; -fx-alignment: center;">
+
+    <Label text="Student Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Button text="View Courses" onAction="#viewCourses"/>
+    <Button text="Register for Classes" onAction="#registerClasses"/>
+</VBox>

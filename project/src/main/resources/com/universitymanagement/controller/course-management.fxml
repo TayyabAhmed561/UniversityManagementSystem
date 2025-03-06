@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.universitymanagement.controller.CourseController"
+            style="-fx-background-color: #e0e0e0;">
+
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #ffcc00;">
+            <Label text="Course Management" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <TextField fx:id="searchField" promptText="Search courses..." />
+            <Button text="Search" onAction="#handleSearchCourse" />
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="courseTable">
+            <columns>
+                <TableColumn fx:id="courseCodeColumn" text="Course Code" />
+                <TableColumn fx:id="courseNameColumn" text="Course Name" />
+                <TableColumn fx:id="courseInstructorColumn" text="Instructor" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" style="-fx-padding: 10;">
+            <Button text="Add Course" onAction="#handleAddCourse" />
+            <Button text="Edit Course" onAction="#handleEditCourse" />
+            <Button text="Delete Course" onAction="#handleDeleteCourse" />
+        </HBox>
+    </bottom>
+</BorderPane>
