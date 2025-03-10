@@ -1,50 +1,55 @@
 package com.universitymanagement.controller.CourseController;
 
 import com.universitymanagement.model.Course;
-import com.universitymanagement.dao.CourseDAO;
-import com.universitymanagement.model.Subject;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-public class CourseFacultyFeatures implements Initializable {
+import java.io.IOException;
 
-    @FXML private TableView<Course> assignedCoursesTable;
-    @FXML private TableColumn<Course, String> courseNameColumn;
-    @FXML private TableColumn<Course, String> instructorColumn;
+public class CourseFacultyFeatures {
 
-    private CourseDAO courseDAO = new CourseDAO();
-    private ObservableList<Course> courseList;
+    @FXML
+    private TableView<Course> assignedCoursesTable;
+    @FXML
+    private TableColumn<Course, String> courseNameColumn;
+    @FXML
+    private TableColumn<Course, String> instructorColumn;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Initialize table columns
-        courseNameColumn.setCellValueFactory(new PropertyValueFactory<>("courseName"));
-        instructorColumn.setCellValueFactory(new PropertyValueFactory<>("instructor"));
+    private ObservableList<Course> courseList = FXCollections.observableArrayList();
 
-        // Load courses assigned to the faculty (filter by instructor name, e.g., logged-in user)
-        String facultyName = "Dr. Alan Turing"; // Replace with actual logged-in faculty
-        courseList = FXCollections.observableArrayList();
-        for (Course course : courseDAO.getAllCourses()) {
-            if (course.getInstructor().equals(facultyName)) {
-                courseList.add(course);
-            }
-        }
+    @FXML
+    public void initialize() {
+        courseNameColumn.setCellValueFactory(cellData -> cellData.getValue().courseNameProperty());
+        instructorColumn.setCellValueFactory(cellData -> cellData.getValue().instructorProperty());
+
+        String facultyName = "Dr. Alan Turing"; // This should be dynamically set to logged-in faculty
+        courseList.add(new Course("Subject101", "Algorithms", 123, facultyName, 30, 20, 1,
+                "Tue/Thu", "10:00-12:00 PM", "Room 102", "12/15/2025", "10:00 AM"));
+
         assignedCoursesTable.setItems(courseList);
-
-        // Add update logic here if needed
     }
 
+    @FXML
+    public void handleBackAction(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/faculty-dashboard-view.fxml", "Faculty Dashboard", event);
+    }
 
+    private void loadView(String fxmlFile, String title, ActionEvent event) {
+        try {
+            Parent viewRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setTitle(title);
+            stage.setScene(new Scene(viewRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

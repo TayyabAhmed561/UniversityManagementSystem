@@ -38,16 +38,19 @@ public class LoginController {
             if (validateLogin("student", studentIdField.getText(), studentPasswordField.getText())) {
                 fxmlFile = "/com/universitymanagement/roleViews/student-dashboard-view.fxml";
                 title = "Student Dashboard";
+                UserRoleAuth.setUserRole(UserRoleAuth.Role.STUDENT);
             }
         } else if (clickedButton.getText().equals("Login as Faculty")) {
             if (validateLogin("faculty", facultyIdField.getText(), facultyPasswordField.getText())) {
                 fxmlFile = "/com/universitymanagement/roleViews/faculty-dashboard-view.fxml";
                 title = "Faculty Dashboard";
+                UserRoleAuth.setUserRole(UserRoleAuth.Role.FACULTY);
             }
         } else if (clickedButton.getText().equals("Login as Admin")) {
             if (validateLogin("admin", adminIdField.getText(), adminPasswordField.getText())) {
                 fxmlFile = "/com/universitymanagement/roleViews/admin-dashboard-view.fxml";
                 title = "Admin Dashboard";
+                UserRoleAuth.setUserRole(UserRoleAuth.Role.ADMIN);
             }
         }
 

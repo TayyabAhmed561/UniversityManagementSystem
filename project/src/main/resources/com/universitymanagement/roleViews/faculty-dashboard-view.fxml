@@ -5,25 +5,24 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.universitymanagement.controller.FacultyController.FacultyDashboardController"
-      style="-fx-padding: 20; -fx-alignment: center; -fx-spacing: 15;">
+      prefWidth="1000" prefHeight="700"
+      style="-fx-padding: 40; -fx-alignment: center; -fx-spacing: 30;">
 
-    <Label text="Faculty Dashboard"
-           style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <Label text="Faculty Dashboard" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
 
-    <Button text="Manage Courses"
-            onAction="#manageCourses"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+    <Button text="View Student Information"
+            onAction="#handleViewStudentInformation"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
-    <Button text="View Student Performance"
-            onAction="#viewPerformance"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+    <Button text="Manage My Courses"
+            onAction="#handleManageCourses"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
-    <Button text="View Subjects"
-            onAction="#handleViewSubjects"
-            style="-fx-background-color: #32CD32; -fx-text-fill: white;" />
+    <Button text="View Events"
+            onAction="#handleViewEvents"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="Logout"
             onAction="#handleLogoutAction"
-            style="-fx-background-color: #B22222; -fx-text-fill: white;" />
-
+            style="-fx-background-color: #B22222; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 </VBox>

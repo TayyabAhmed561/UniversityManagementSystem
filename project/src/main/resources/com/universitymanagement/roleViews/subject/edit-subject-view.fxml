@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.SubjectController.EditSubjectController"
+      prefWidth="1000" prefHeight="700"
+      style="-fx-padding: 40; -fx-alignment: center; -fx-spacing: 30;">
+
+    <Label text="Edit Subject" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <ComboBox fx:id="subjectComboBox" promptText="Select Subject"
+              style="-fx-font-size: 20px; -fx-min-width: 400px;" />
+    <TextField fx:id="newCodeField" promptText="New Subject Code"
+               style="-fx-font-size: 20px; -fx-min-width: 400px;" />
+    <TextField fx:id="newNameField" promptText="New Subject Name"
+               style="-fx-font-size: 20px; -fx-min-width: 400px;" />
+
+    <Button text="Edit Subject" onAction="#handleEditSubject"
+            style="-fx-background-color: #FFA500; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 250px;" />
+
+    <Button text="Back"
+            onAction="#handleBackAction"
+            style="-fx-background-color: #f0f0f0; -fx-text-fill: #333333;
+                   -fx-border-color: #d3d3d3; -fx-font-size: 20px; -fx-min-width: 250px;" />
+</VBox>

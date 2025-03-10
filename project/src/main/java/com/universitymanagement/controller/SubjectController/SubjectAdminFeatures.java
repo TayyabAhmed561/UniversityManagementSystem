@@ -1,93 +1,75 @@
 package com.universitymanagement.controller.SubjectController;
 
-import javafx.collections.FXCollections;
+import com.universitymanagement.controller.BackButtonController;
+import com.universitymanagement.model.Subject;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextInputDialog;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Optional;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class SubjectAdminFeatures {
 
     @FXML
-    private ListView<String> subjectListView;
-
-    private final ObservableList<String> subjects = FXCollections.observableArrayList(
-            "Mathematics - Calculus I",
-            "English - Literature Basics",
-            "Computer Science - Introduction to Programming",
-            "Chemistry - Introduction to Chemistry"
-    );
+    private TextField subjectCodeField;
 
     @FXML
-    public void initialize() {
-        subjectListView.setItems(subjects);
-    }
+    private TextField subjectNameField;
 
     @FXML
-    public void handleBackAction(ActionEvent event) throws IOException {
-        loadView("/com/universitymanagement/roleViews/admin-dashboard-view.fxml", "Admin Dashboard", event);
-    }
+    private TableView<Subject> subjectTable;
+
+    @FXML
+    private TableColumn<Subject, String> subjectCodeColumn;
+
+    @FXML
+    private TableColumn<Subject, String> subjectNameColumn;
 
     @FXML
     public void handleAddSubject(ActionEvent event) {
-        TextInputDialog codeDialog = new TextInputDialog();
-        codeDialog.setTitle("Add Subject");
-        codeDialog.setHeaderText("Enter Subject Code");
-        codeDialog.setContentText("Subject Code:");
+        String code = subjectCodeField.getText().trim();
+        String name = subjectNameField.getText().trim();
 
-        Optional<String> codeResult = codeDialog.showAndWait();
-        codeResult.ifPresent(subjectCode -> {
-            TextInputDialog nameDialog = new TextInputDialog();
-            nameDialog.setTitle("Add Subject");
-            nameDialog.setHeaderText("Enter Subject Name");
-            nameDialog.setContentText("Subject Name:");
-
-            Optional<String> nameResult = nameDialog.showAndWait();
-            nameResult.ifPresent(subjectName -> {
-                String newSubject = subjectCode + " - " + subjectName;
-                subjects.add(newSubject);
-                showAlert("Success", "Subject added successfully: " + newSubject);
-            });
-        });
-    }
-
-    @FXML
-    public void handleEditSubject(ActionEvent event) {
-        String selectedSubject = subjectListView.getSelectionModel().getSelectedItem();
-        if (selectedSubject == null) {
-            showAlert("Error", "Please select a subject to edit.");
+        if (code.isEmpty() || name.isEmpty()) {
+            showAlert("Error", "Subject code and name cannot be empty.");
             return;
         }
 
-        TextInputDialog nameDialog = new TextInputDialog(selectedSubject.split(" - ")[1]);
-        nameDialog.setTitle("Edit Subject");
-        nameDialog.setHeaderText("Edit Subject Name");
-        nameDialog.setContentText("Subject Name:");
-
-        Optional<String> nameResult = nameDialog.showAndWait();
-        nameResult.ifPresent(newSubjectName -> {
-            int selectedIndex = subjectListView.getSelectionModel().getSelectedIndex();
-            String newSubject = selectedSubject.split(" - ")[0] + " - " + newSubjectName;
-            subjects.set(selectedIndex, newSubject);
-            showAlert("Success", "Subject updated successfully: " + newSubject);
-        });
+        SubjectManager.addSubject(code, name);
+        refreshSubjectList();
+        subjectCodeField.clear();
+        subjectNameField.clear();
     }
 
-    private void loadView(String fxmlFile, String title, ActionEvent event) throws IOException {
-        Parent viewRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(viewRoot));
-        stage.show();
+    @FXML
+    public void handleDeleteSubject(ActionEvent event) {
+        Subject selectedSubject = subjectTable.getSelectionModel().getSelectedItem();
+        if (selectedSubject != null) {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete this subject?", ButtonType.YES, ButtonType.NO);
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.YES) {
+                    SubjectManager.removeSubject(selectedSubject.getSubjectCode());
+                    refreshSubjectList();
+                }
+            });
+        } else {
+            showAlert("Error", "Please select a subject to delete.");
+        }
+    }
+
+    @FXML
+    public void handleBackAction(ActionEvent event) {
+        BackButtonController backButtonController = new BackButtonController();
+        backButtonController.handleBackAction(event);
+    }
+
+    private void refreshSubjectList() {
+        ObservableList<Subject> subjects = SubjectManager.getSubjects();
+        subjectTable.setItems(subjects);
     }
 
     private void showAlert(String title, String message) {

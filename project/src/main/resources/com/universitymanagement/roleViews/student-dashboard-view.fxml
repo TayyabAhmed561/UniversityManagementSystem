@@ -5,24 +5,28 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.universitymanagement.controller.StudentController.StudentDashboardController"
-      style="-fx-padding: 20; -fx-alignment: center; -fx-spacing: 15;">
+      prefWidth="1000" prefHeight="700"
+      style="-fx-padding: 40; -fx-alignment: center; -fx-spacing: 30;">
 
-    <Label text="Student Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <Label text="Student Dashboard" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
 
-    <Button text="View Courses"
-            onAction="#viewCourses"
-            style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+    <Button text="View My Profile"
+            onAction="#handleViewProfile"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
-    <Button text="Register for Classes"
-            onAction="#registerClasses"
-            style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+    <Button text="View Faculty Profiles"
+            onAction="#handleViewFacultyProfiles"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
-    <Button text="View Subjects"
-            onAction="#handleViewSubjects"
-            style="-fx-background-color: #32CD32; -fx-text-fill: white;" />
+    <Button text="View Available Events"
+            onAction="#handleViewEvents"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
+
+    <Button text="View My Courses"
+            onAction="#handleViewCourses"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="Logout"
             onAction="#handleLogoutAction"
-            style="-fx-background-color: #B22222; -fx-text-fill: white;" />
-
+            style="-fx-background-color: #B22222; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 </VBox>

@@ -23,23 +23,23 @@ public class AdminDashboardController {
     }
 
     @FXML
-    public void handleManageSubjects(ActionEvent event) {
-        loadView("/com/universitymanagement/roleViews/subjects-management-view.fxml", "Subject Management", event);
+    public void handleViewSubjects(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/subject/subjects-view.fxml", "View Subjects", event);
     }
 
     @FXML
-    public void handleViewSubjects(ActionEvent event) {
-        loadView("/com/universitymanagement/roleViews/subjects-view.fxml", "View Subjects", event);
+    public void handleManageSubjects(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/subject/subject-management-view.fxml", "Manage Subjects", event);
     }
 
     @FXML
     public void handleAddSubject(ActionEvent event) {
-        loadView("/com/universitymanagement/roleViews/add-subject-view.fxml", "Add Subject", event);
+        loadView("/com/universitymanagement/roleViews/subject/add-subject-view.fxml", "Add Subject", event);
     }
 
     @FXML
     public void handleEditSubject(ActionEvent event) {
-        loadView("/com/universitymanagement/roleViews/edit-subject-view.fxml", "Edit Subject", event);
+        loadView("/com/universitymanagement/roleViews/subject/edit-subject-view.fxml", "Edit Subject", event);
     }
 
     @FXML
@@ -52,6 +52,32 @@ public class AdminDashboardController {
         loadView("/com/universitymanagement/auth/login-view.fxml", "Login", event);
         System.out.println("Logged out successfully.");
     }
+
+    @FXML
+    public void handleManageStudents(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/student/student-management-admin-view.fxml", "Manage Students", event);
+    }
+
+    @FXML
+    public void handleManageFaculty(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/faculty/faculty-admin-view.fxml", "Manage Faculty", event);
+    }
+
+    @FXML
+    public void handleManageEvents(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/events/event-admin-view.fxml", "Manage Events", event);
+    }
+
+    @FXML
+    public void handleManageCourses(ActionEvent event) {
+        loadView("/com/universitymanagement/roleViews/course/admin-course-management-view.fxml", "Manage Courses", event);
+    }
+    public void handleExitAction(ActionEvent event) {
+        System.out.println("Exiting application...");
+        System.exit(0);
+    }
+
+
 
     private void loadView(String fxmlFile, String title, ActionEvent event) {
         try {

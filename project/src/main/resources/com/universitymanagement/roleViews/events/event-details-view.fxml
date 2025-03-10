@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.EventController.EventFacultyFeatures"
+      prefWidth="1000" prefHeight="700"
+      spacing="30" style="-fx-padding: 40; -fx-alignment: center;">
+
+    <Label text="Event Details"
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <ImageView fx:id="eventImage" fitWidth="400" fitHeight="300" preserveRatio="true" />
+
+    <Label fx:id="eventDescriptionLabel" text="Event Description"
+           style="-fx-font-size: 20px;" />
+
+    <Label fx:id="eventDateLabel" text="Event Date"
+           style="-fx-font-size: 18px;" />
+
+    <Label fx:id="eventTimeLabel" text="Event Time"
+           style="-fx-font-size: 18px;" />
+
+    <Label fx:id="eventLocationLabel" text="Event Location"
+           style="-fx-font-size: 18px;" />
+
+    <Button text="Register for Event" onAction="#registerForEvent"
+            style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-size: 20px;" />
+
+    <Button text="Back" onAction="#handleBackAction"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px;" />
+</VBox>

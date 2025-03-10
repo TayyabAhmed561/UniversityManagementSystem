@@ -1,158 +1,106 @@
 package com.universitymanagement.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Student {
-    public String id;
-    public String name;
-    private String address;
-    private String phone;
-    private String email;
-    public String status; // Undergraduate, Graduate, PhD
-    public String semester;
-    public String username;
-    private String password;
-    private boolean isTuitionPaid;
-    public List<String> enrolledCourses = new ArrayList<>(); // Course codes
-    private List<CourseGrade> grades = new ArrayList<>();
-    public String thesisTitle; // For PhD students
-    public double progress; // Percentage of program completed
+    private final StringProperty id;
+    private final StringProperty name;
+    private final StringProperty address;
+    private final StringProperty phone;
+    private final StringProperty email;
+    private final StringProperty status;
+    private final StringProperty semester;
+    public List<String> enrolledCourses = new ArrayList<>();
 
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    private static final Random rand = new Random();
-
-    private class CourseGrade {
-        String courseCode;
-        double grade;
-
-        public CourseGrade(String courseCode, double grade) {
-            this.courseCode = courseCode;
-            this.grade = grade;
-        }
-    }
-
+    // Full Constructor with all parameters
     public Student(String id, String name, String address, String phone, String email, String status, String semester) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.status = status;
-        this.semester = semester;
-        this.username = generateUsername(name);
-        this.password = generateRandomPassword();
-        this.isTuitionPaid = false;
-        this.progress = 0.0;
-        if (status.equalsIgnoreCase("PhD")) this.thesisTitle = "TBD";
+        this.id = new SimpleStringProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.address = new SimpleStringProperty(address);
+        this.phone = new SimpleStringProperty(phone);
+        this.email = new SimpleStringProperty(email);
+        this.status = new SimpleStringProperty(status);
+        this.semester = new SimpleStringProperty(semester);
     }
 
-    // Getter for Student ID
-    public String getStudentID() {
+    // Constructor with five parameters
+    public Student(String id, String name, String address, String phone, String email) {
+        this(id, name, address, phone, email, "N/A", "N/A");
+    }
+
+    // Simplified constructor for event registration
+    public Student(String id, String name) {
+        this(id, name, "N/A", "N/A", "N/A", "N/A", "N/A");
+    }
+
+    // Getters
+    public String getId() {
+        return id.get();
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public String getAddress() {
+        return address.get();
+    }
+
+    public String getPhone() {
+        return phone.get();
+    }
+
+    public String getEmail() {
+        return email.get();
+    }
+
+    public String getStatus() {
+        return status.get();
+    }
+
+    public String getSemester() {
+        return semester.get();
+    }
+
+    // Setters
+    public void setStatus(String status) {
+        this.status.set(status);
+    }
+
+    public void setSemester(String semester) {
+        this.semester.set(semester);
+    }
+
+    // Property methods for JavaFX TableView
+    public StringProperty idProperty() {
         return id;
     }
 
-    private static String generateRandomPassword() {
-        StringBuilder sb = new StringBuilder(8);
-        for (int i = 0; i < 8; i++) {
-            sb.append(CHARACTERS.charAt(rand.nextInt(CHARACTERS.length())));
-        }
-        return sb.toString();
+    public StringProperty nameProperty() {
+        return name;
     }
 
-    private static String generateUsername(String fullName) {
-        String[] nameParts = fullName.trim().split("\\s+");
-        if (nameParts.length < 2) return "unknown";
-        char firstInitial = Character.toUpperCase(nameParts[0].charAt(0));
-        String lastName = nameParts[1].toLowerCase();
-        return firstInitial + lastName;
+    public StringProperty addressProperty() {
+        return address;
     }
 
-    public void enrollInCourse(String courseCode) {
-        enrolledCourses.add(courseCode);
-        System.out.println("Enrolled in " + courseCode);
+    public StringProperty phoneProperty() {
+        return phone;
     }
 
-    public void dropCourse(String courseCode) {
-        if (enrolledCourses.remove(courseCode)) {
-            System.out.println(courseCode + " dropped.");
-        } else {
-            System.out.println("Course not found.");
-        }
+    public StringProperty emailProperty() {
+        return email;
     }
 
-    public void assignGrade(String courseCode, double grade) {
-        grades.add(new CourseGrade(courseCode, grade));
-        System.out.println("Grade assigned for " + courseCode);
-        updateProgress();
+    public StringProperty statusProperty() {
+        return status;
     }
 
-    public void viewGrades() {
-        if (grades.isEmpty()) {
-            System.out.println("No grades available.");
-        } else {
-            System.out.println("Grades for " + name + ":");
-            for (CourseGrade courseGrade : grades) {
-                System.out.println(courseGrade.courseCode + ": " + courseGrade.grade);
-            }
-        }
-    }
-
-    public void viewProfile() {
-        displayStudentDetails();
-        System.out.println("Enrolled Courses: " + String.join(", ", enrolledCourses));
-    }
-
-    public void displayStudentDetails() {
-        System.out.println("ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
-        System.out.println("Address: " + address);
-        System.out.println("Phone: " + phone);
-        System.out.println("Email: " + email);
-        System.out.println("Status: " + status);
-        System.out.println("Semester: " + semester);
-        System.out.println("Tuition Paid: " + (isTuitionPaid ? "Yes" : "No"));
-        if (status.equalsIgnoreCase("PhD")) {
-            System.out.println("Thesis Title: " + thesisTitle);
-        }
-        System.out.println("Progress: " + progress + "%");
-        System.out.println("----------------------------");
-    }
-
-    public void updateStudentDetails(String newAddress, String newPhone, String newEmail) {
-        this.address = newAddress;
-        this.phone = newPhone;
-        this.email = newEmail;
-        System.out.println("Details updated.");
-    }
-
-    public void changePassword(String newPassword) {
-        this.password = newPassword;
-        System.out.println("Password updated.");
-    }
-
-    public void payTuition() {
-        int tuition = status.equalsIgnoreCase("Graduate") ? 4000 : 5000;
-        System.out.println("Tuition fee: $" + tuition);
-        isTuitionPaid = true;
-        System.out.println("Payment successful.");
-    }
-
-    public boolean isTuitionPaid() {
-        return isTuitionPaid;
-    }
-
-    private void updateProgress() {
-        progress = Math.min(100, grades.size() * 10.0); // 10% per course completed
-    }
-
-    public void setThesisTitle(String title) {
-        if (status.equalsIgnoreCase("PhD")) {
-            this.thesisTitle = title;
-            System.out.println("Thesis title updated.");
-        }
+    public StringProperty semesterProperty() {
+        return semester;
     }
 }

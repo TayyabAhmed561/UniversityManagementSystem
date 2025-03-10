@@ -1,4 +1,4 @@
-package com.universitymanagement.dao;
+/*package com.universitymanagement.dao;
 
 import com.universitymanagement.model.Course;
 import com.universitymanagement.model.Subject;
@@ -123,4 +123,4 @@ public class CourseDAO {
         return courses.toString();
     }
 
-}
+}*/

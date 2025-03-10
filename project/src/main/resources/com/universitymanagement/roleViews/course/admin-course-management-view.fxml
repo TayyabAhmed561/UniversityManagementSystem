@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.CourseController.CourseAdminFeatures"
+      prefWidth="1000" prefHeight="700"
+      style="-fx-padding: 40; -fx-alignment: center; -fx-spacing: 30;">
+
+    <Label text="Admin - Course Management"
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <!-- Course Table -->
+    <TableView fx:id="courseTable" prefHeight="400" prefWidth="600"
+               style="-fx-border-color: lightgrey;">
+        <columns>
+            <TableColumn fx:id="courseName" text="Course Name" prefWidth="300" />
+            <TableColumn fx:id="courseCode" text="Course Code" prefWidth="300" />
+        </columns>
+    </TableView>
+
+    <!-- Input Fields and Buttons -->
+    <HBox spacing="20" style="-fx-alignment: center;">
+        <TextField fx:id="courseNameField" promptText="Course Name" prefWidth="200"/>
+        <TextField fx:id="courseCodeField" promptText="Course Code" prefWidth="200"/>
+        <Button text="Add Course" onAction="#handleAddCourse"
+                style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-size: 20px;" />
+        <Button text="Delete Course" onAction="#handleDeleteCourse"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 20px;" />
+    </HBox>
+
+    <!-- Back Button -->
+    <Button text="Back" onAction="#handleBackAction"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px;" />
+
+</VBox>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.EventController.EventAdminFeatures"
+      prefWidth="1000" prefHeight="700"
+      spacing="30" style="-fx-padding: 40; -fx-alignment: center;">
+
+    <Label text="Event Management (Admin)"
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <GridPane hgap="20" vgap="20" style="-fx-alignment: center;">
+        <Label text="Event Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="eventNameField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label text="Event Code:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TextField fx:id="eventCodeField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <HBox spacing="20" style="-fx-alignment: center;">
+        <Button text="Add Event" onAction="#handleAddEvent"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 20px;" />
+        <Button text="Delete Event" onAction="#handleDeleteEvent"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 20px;" />
+        <Button text="Back" onAction="#handleBackAction"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 20px;" />
+    </HBox>
+
+    <ListView fx:id="eventsListView" prefHeight="300" prefWidth="600" />
+</VBox>

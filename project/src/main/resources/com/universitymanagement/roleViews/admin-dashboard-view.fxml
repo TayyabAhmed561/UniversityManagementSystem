@@ -5,43 +5,54 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.universitymanagement.controller.AdminController.AdminDashboardController"
-      style="-fx-padding: 20; -fx-alignment: center; -fx-spacing: 15;">
+      prefWidth="1000" prefHeight="700"
+      style="-fx-padding: 40; -fx-alignment: center; -fx-spacing: 30;">
 
     <Label text="Admin Dashboard"
-           style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
 
     <Button text="Manage Users"
             onAction="#manageUsers"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="View Reports"
             onAction="#viewReports"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="Manage Subjects"
             onAction="#handleManageSubjects"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="View Subjects"
             onAction="#handleViewSubjects"
-            style="-fx-background-color: #32CD32; -fx-text-fill: white;" />
+            style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="Logout"
             onAction="#handleLogoutAction"
-            style="-fx-background-color: #B22222; -fx-text-fill: white;" />
+            style="-fx-background-color: #B22222; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="Add Subject"
             onAction="#handleAddSubject"
-            style="-fx-background-color: #32CD32; -fx-text-fill: white;" />
+            style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
     <Button text="Edit Subject"
             onAction="#handleEditSubject"
-            style="-fx-background-color: #FFA500; -fx-text-fill: white;" />
+            style="-fx-background-color: #FFA500; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
-    <Button text="Back to Dashboard"
-            onAction="#handleBackAction"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white;" />
+    <Button text="Manage Students"
+            onAction="#handleManageStudents"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
+    <Button text="Manage Faculty"
+            onAction="#handleManageFaculty"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
+    <Button text="Manage Events"
+            onAction="#handleManageEvents"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
+
+    <Button text="Manage Courses"
+            onAction="#handleManageCourses"
+            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
 
 </VBox>

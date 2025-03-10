@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.SubjectController.SubjectAdminFeatures"
+      prefWidth="1000" prefHeight="700"
+      spacing="30" style="-fx-padding: 40; -fx-alignment: center;">
+
+    <Label text="Subject Management (Admin)"
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <!-- Form to Add Subject -->
+    <HBox spacing="20" style="-fx-alignment: center;">
+        <TextField fx:id="subjectCodeField" promptText="Subject Code"
+                   style="-fx-font-size: 20px; -fx-min-width: 200px;" />
+        <TextField fx:id="subjectNameField" promptText="Subject Name"
+                   style="-fx-font-size: 20px; -fx-min-width: 300px;" />
+        <Button text="Add Subject" onAction="#handleAddSubject"
+                style="-fx-background-color: #32CD32; -fx-text-fill: white; -fx-font-size: 20px;" />
+    </HBox>
+
+    <!-- Subjects List -->
+    <TableView fx:id="subjectTable" style="-fx-border-color: lightgrey; -fx-font-size: 18px;">
+        <columns>
+            <TableColumn text="Subject Code" fx:id="subjectCodeColumn" prefWidth="200"/>
+            <TableColumn text="Subject Name" fx:id="subjectNameColumn" prefWidth="300"/>
+        </columns>
+    </TableView>
+
+    <Button text="Delete Selected Subject" onAction="#handleDeleteSubject"
+            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 250px;" />
+
+    <Button text="Back"
+            onAction="#handleBackAction"
+            style="-fx-background-color: #f0f0f0; -fx-text-fill: #333333;
+                   -fx-border-color: #d3d3d3; -fx-font-size: 20px; -fx-min-width: 250px;" />
+</VBox>

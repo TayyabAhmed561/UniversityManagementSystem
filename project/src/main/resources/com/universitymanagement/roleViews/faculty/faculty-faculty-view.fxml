@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.FacultyController.FacultyFacultyFeatures"
+      prefWidth="1000" prefHeight="700"
+      spacing="30" style="-fx-padding: 40; -fx-alignment: center;">
+
+    <Label text="View Student Information (Faculty)"
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <!-- Student Table to View Profiles -->
+    <TableView fx:id="studentTable" style="-fx-border-color: lightgrey; -fx-font-size: 18px;">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn" prefWidth="150" />
+            <TableColumn text="Name" fx:id="nameColumn" prefWidth="200" />
+            <TableColumn text="Email" fx:id="emailColumn" prefWidth="250" />
+            <TableColumn text="Status" fx:id="statusColumn" prefWidth="150" />
+            <TableColumn text="Semester" fx:id="semesterColumn" prefWidth="200" />
+        </columns>
+    </TableView>
+
+    <!-- Back Button -->
+    <Button text="Back" onAction="#handleBackAction"
+            style="-fx-background-color: #f0f0f0; -fx-text-fill: #333333; -fx-font-size: 20px;" />
+</VBox>

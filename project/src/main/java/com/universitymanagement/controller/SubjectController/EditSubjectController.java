@@ -1,48 +1,64 @@
 package com.universitymanagement.controller.SubjectController;
 
 import com.universitymanagement.model.Subject;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class EditSubjectController {
 
     @FXML
-    private ComboBox<Subject> subjectComboBox;
+    private TextField codeField;
 
     @FXML
-    private TextField newCodeField;
+    private TextField nameField;
 
-    @FXML
-    private TextField newNameField;
+    private Subject selectedSubject;
 
-    @FXML
-    public void initialize() {
-        ObservableList<Subject> subjects = FXCollections.observableArrayList(SubjectManager.getSubjects());
-        subjectComboBox.setItems(subjects);
+    public void initialize(Subject subject) {
+        this.selectedSubject = subject;
+        codeField.setText(subject.getSubjectCode());
+        nameField.setText(subject.getSubjectName());
     }
 
     @FXML
     public void handleEditSubject(ActionEvent event) {
-        Subject selectedSubject = subjectComboBox.getSelectionModel().getSelectedItem();
-        String newCode = newCodeField.getText().trim();
-        String newName = newNameField.getText().trim();
+        String newCode = codeField.getText().trim();
+        String newName = nameField.getText().trim();
 
-        if (selectedSubject == null || newCode.isEmpty() || newName.isEmpty()) {
-            showAlert("Error", "Please select a subject and fill in both fields.");
+        if (newCode.isEmpty() || newName.isEmpty()) {
+            showAlert("Error", "Both fields are required.");
             return;
         }
 
-        SubjectManager.editSubject(selectedSubject.getSubjectCode(), newCode, newName);
-        showAlert("Success", "Subject updated successfully!");
+        selectedSubject.setSubjectCode(newCode);
+        selectedSubject.setSubjectName(newName);
 
-        // Close the window after editing the subject
-        ((Stage) subjectComboBox.getScene().getWindow()).close();
+        showAlert("Success", "Subject edited successfully!");
+
+        // Load the Admin Dashboard view after editing
+        handleBackAction(event);
+    }
+
+    @FXML
+    public void handleBackAction(ActionEvent event) {
+        try {
+            Parent viewRoot = FXMLLoader.load(getClass().getResource("/com/universitymanagement/roleViews/admin-dashboard-view.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Admin Dashboard");
+            stage.setScene(new Scene(viewRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the Admin Dashboard.");
+        }
     }
 
     private void showAlert(String title, String message) {

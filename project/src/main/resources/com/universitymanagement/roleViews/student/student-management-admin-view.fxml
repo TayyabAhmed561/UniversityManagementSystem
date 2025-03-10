@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.universitymanagement.controller.StudentController.StudentAdminFeatures"
+      prefWidth="1000" prefHeight="700"
+      spacing="30" style="-fx-padding: 40; -fx-alignment: center;">
+
+    <Label text="Student Management (Admin)"
+           style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+
+    <!-- Form to Add Student -->
+    <GridPane hgap="20" vgap="20" style="-fx-alignment: center;">
+        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextField fx:id="idField" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+
+        <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TextField fx:id="nameField" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+
+        <Label text="Address:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <TextField fx:id="addressField" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+
+        <Label text="Phone:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <TextField fx:id="phoneField" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+
+        <Label text="Email:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <TextField fx:id="emailField" GridPane.rowIndex="4" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+
+        <Label text="Status:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+        <TextField fx:id="statusField" GridPane.rowIndex="5" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+
+        <Label text="Semester:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+        <TextField fx:id="semesterField" GridPane.rowIndex="6" GridPane.columnIndex="1" style="-fx-font-size: 18px;" />
+    </GridPane>
+
+    <!-- Buttons for Actions -->
+    <HBox spacing="20" style="-fx-alignment: center;">
+        <Button text="Add Student" onAction="#handleAddStudent"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 20px;" />
+        <Button text="Delete Student" onAction="#handleDeleteStudent"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 20px;" />
+        <Button text="Back" onAction="#handleBackAction"
+                style="-fx-background-color: #f0f0f0; -fx-text-fill: #333333; -fx-font-size: 20px;" />
+    </HBox>
+
+    <!-- Student Table -->
+    <TableView fx:id="studentTable" style="-fx-border-color: lightgrey;">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn" prefWidth="200" />
+            <TableColumn text="Name" fx:id="nameColumn" prefWidth="300" />
+        </columns>
+    </TableView>
+</VBox>
