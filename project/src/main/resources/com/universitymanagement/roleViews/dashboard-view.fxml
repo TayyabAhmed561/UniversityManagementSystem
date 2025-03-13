@@ -10,7 +10,7 @@
             style="-fx-background-color: linear-gradient(to bottom, #B22222, #FFD100);">
 
     <!-- Top Menu Bar for Navigation -->
-    <top>
+    <left>
         <MenuBar>
             <Menu text="Dashboard">
                 <MenuItem text="Home" onAction="#loadHome"/>
@@ -24,7 +24,7 @@
                 <MenuItem text="Event Management" onAction="#loadEventManagement"/>
             </Menu>
         </MenuBar>
-    </top>
+    </left>
 
     <!-- Central Content Pane -->
     <center>
