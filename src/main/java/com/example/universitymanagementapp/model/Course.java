@@ -16,10 +16,11 @@ public class Course {
     private String meetingLocation;
     private String finalExamDate;
     private String finalExamTime;
-
     private List<String> enrolledStudents;
 
-    // Course constructor
+    // Course constructors
+    public Course() {};
+
     public Course(String subjectName, String courseName, int courseCode, String instructor, int capacity,
                   int currentEnrollment, int sectionID, String meetingDays, String meetingTime, String meetingLocation,
                   String finalExamDate, String finalExamTime) {
@@ -139,11 +140,24 @@ public class Course {
         return enrolledStudents;
     }
 
+
     //enroll a student
     public void enrollStudent(String studentName) {
         enrolledStudents.add(studentName);
+        int studentCount = enrolledStudents.size();
+        setCurrentEnrollment(studentCount);
     }
-    //consider using toString method for debugging/logging
+
+    @Override
+    public String toString(){
+        return "Course\nSubject: " +subjectName + "\nCourse Name: " +courseName
+                + "\nCourse Code: " +courseCode + "\nInstructor: " +instructor
+                + "\nCapacity: " +capacity + "\nCurrent Enrollment: " +currentEnrollment
+                + "\nSection ID: " +sectionID + "\nMeeting Days: " +meetingDays
+                + "\nMeeting Time: " +meetingTime + "\nMeeting Location: " +meetingLocation
+                + "\nFinal Exam Date: " +finalExamDate + "\nFinal Exam Time: " +finalExamTime
+                + "\nEnrolled Students: " +enrolledStudents;
+    }
 
 }
 
