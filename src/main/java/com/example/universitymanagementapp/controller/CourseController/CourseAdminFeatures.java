@@ -1,28 +1,14 @@
 package com.example.universitymanagementapp.controller.CourseController;
 
-import com.example.universitymanagementapp.model.Course;
-import com.example.universitymanagementapp.dao.CourseDAO;
-
-import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 public class CourseAdminFeatures {
+    @FXML
+    public Label welcomeText;
 
-    private CourseDAO courseDAO = new CourseDAO();
-
-    public boolean addCourse(Course course){
-        return courseDAO.addCourse(course);
+    @FXML
+    public void onHelloButtonClick() {
+        welcomeText.setText("Welcome to JavaFX Application!");
     }
-
-    public boolean deleteCourse(int courseCode){
-        return courseDAO.deleteCourse(courseCode);
-    }
-
-    public List<Course> searchCourseByName(String courseName){
-        return courseDAO.getCourseByName(courseName);
-    }
-
-    public List<Course> getAllCourses(){
-        return courseDAO.getAllCourses();
-    }
-
 }

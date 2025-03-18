@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
-public class CourseManagementStudentUI {
+public class CourseManagementStudentUI extends CourseStudentFeatures {
 
     @FXML
     private TableView<Course> studentCourseTable;
