@@ -5,7 +5,7 @@ import jdk.jfr.Percentage;
 
 import java.util.List;
 
-public class Student {
+public class Student extends User{
     private String name;
     private String studentId;
     private Image profilePicture;
@@ -16,17 +16,18 @@ public class Student {
     private String email;
     private List<Grade> grades;
     private String currentSemester; //consider making it an int and switching print out statement based on number
-    private List<Subject> registeredSubjects;
+    private List<String> registeredSubjects;
     private String academicLevel;
     private String thesisTitle;
-    private Percentage progress;
+    private double progress;
 
     public Student(){};
 
-    public Student(String name, String studentId, Image profilePicture, String address, String phoneNumber,
+    public Student(String username, String hashedPassword, String name, String studentId, Image profilePicture, String address, String phoneNumber,
                    int tuitionFees, List<Course> registeredCourses, String email, List<Grade> grades,
-                   String currentSemester, List<Subject> registeredSubjects, String academicLevel, String thesisTitle,
-                   Percentage progress){
+                   String currentSemester, List<String> registeredSubjects, String academicLevel, String thesisTitle,
+                   double progress){
+        super(username, hashedPassword, "Student");
         this.name = name;
         this.studentId = studentId;
         this.profilePicture = profilePicture;
@@ -41,6 +42,16 @@ public class Student {
         this.academicLevel = academicLevel;
         this.thesisTitle = thesisTitle;
         this.progress = progress;
+    }
+
+
+
+
+    public Student(String stringCellValue, String stringCellValue1, String stringCellValue2, String stringCellValue3) {
+        this.name = stringCellValue;
+        this.studentId = stringCellValue1;
+        this.address = stringCellValue2;
+        this.phoneNumber = stringCellValue3;
     }
 
     //getters & setters
@@ -104,10 +115,10 @@ public class Student {
     public void setCurrentSemester(String currentSemester) {
         this.currentSemester = currentSemester;
     }
-    public List<Subject> getRegisteredSubjects() {
+    public List<String> getRegisteredSubjects() {
         return registeredSubjects;
     }
-    public void setRegisteredSubjects(List<Subject> registeredSubjects) {
+    public void setRegisteredSubjects(List<String> registeredSubjects) {
         this.registeredSubjects = registeredSubjects;
     }
     public String getAcademicLevel() {
@@ -122,10 +133,10 @@ public class Student {
     public void setThesisTitle(String thesisTitle) {
         this.thesisTitle = thesisTitle;
     }
-    public Percentage getProgress() {
+    public double getProgress() {
         return progress;
     }
-    public void setProgress(Percentage progress) {
+    public void setProgress(double progress) {
         this.progress = progress;
     }
 
@@ -135,7 +146,8 @@ public class Student {
                 + "\nAddress: " +address + "\nPhone Number: " +phoneNumber + "\nTuition Fees: " +tuitionFees
                 + "\nRegistered Courses: " +registeredCourses + "\nEmail: " +email + "\nGrades: " +grades
                 + "\nCurrent Semester: " +currentSemester + "\nRegistered Subjects: " +registeredSubjects
-                + "\nAcademic Level: " +academicLevel + "\nThesis Title: " +thesisTitle + "\nProgress: " +progress;
+                + "\nAcademic Level: " +academicLevel + "\nThesis Title: " +thesisTitle + "\nProgress: " +progress + "%";
     }
 
 }
+

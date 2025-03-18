@@ -3,6 +3,7 @@ package com.example.universitymanagementapp.model;
 import javafx.scene.image.Image;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Event {
     private String eventName;
@@ -10,23 +11,22 @@ public class Event {
     private String eventDescription;
     private Image eventHeaderImage;
     private String eventLocation;
-    private Date eventDate;
-    private String eventTime;
-    private double eventCost;
-    private List<Student> registeredStudents;
+    private Date eventDateTime;
+    private int eventCapacity;
+    private String eventCost;
+    private List<String> registeredStudents;
 
     public Event(){};
 
     public Event(String eventName, String eventCode, String eventDescription
-            , Image eventHeaderImage, String eventLocation, Date eventDate
-            , String eventTime, double eventCost, List<Student> registeredStudents){
+            , Image eventHeaderImage, String eventLocation, Date eventDateTime, int eventCapacity, String eventCost, List<String> registeredStudents){
         this.eventName = eventName;
         this.eventCode = eventCode;
         this.eventDescription = eventDescription;
         this.eventHeaderImage = eventHeaderImage;
         this.eventLocation = eventLocation;
-        this.eventDate = eventDate;
-        this.eventTime = eventTime;
+        this.eventDateTime = eventDateTime;
+        this.eventCapacity = eventCapacity;
         this.eventCost = eventCost;
         this.registeredStudents = registeredStudents;
     }
@@ -62,34 +62,34 @@ public class Event {
     public void setEventLocation(String eventLocation) {
         this.eventLocation = eventLocation;
     }
-    public Date getEventDate() {
-        return eventDate;
+    public Date getEventDateTime() {
+        return eventDateTime;
     }
-    public void setEventDate(Date eventDate) {
-        this.eventDate = eventDate;
+    public void setEventDateTime(Date eventDateTime) {
+        this.eventDateTime = eventDateTime;
     }
-    public String getEventTime() {
-        return eventTime;
-    }
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
-    }
-    public double getEventCost() {
+    public String getEventCost() {
         return eventCost;
     }
-    public void setEventCost(double eventCost) {
+    public void setEventCost(String eventCost) {
         this.eventCost = eventCost;
     }
-    public List<Student> getRegisteredStudents() {
+    public List<String> getRegisteredStudents() {
         return registeredStudents;
     }
-    public void setRegisteredStudents(List<Student> registeredStudents) {
+    public void setRegisteredStudents(List<String> registeredStudents) {
         this.registeredStudents = registeredStudents;
+    }
+    public int getEventCapacity() {
+        return eventCapacity;
+    }
+    public void setEventCapacity(int eventCapacity) {
+        this.eventCapacity = eventCapacity;
     }
 
     @Override
     public String toString() {
-        return "Event\neventName=" + eventName + ", eventCode=" + eventCode + ", eventDescription=" + eventDescription + ", eventHeaderImage=" + eventHeaderImage + ", eventLocation=" + eventLocation + ", eventDate=" + eventDate + ", eventTime=" + eventTime + ", eventCost=" + eventCost + ", registeredStudents=" + registeredStudents;
+        return "Event\neventName=" + eventName + ", eventCode=" + eventCode + ", eventDescription=" + eventDescription + ", eventHeaderImage=" + eventHeaderImage + ", eventLocation=" + eventLocation + ", eventDate=" + eventDateTime + ", eventCost=" + eventCost + ", registeredStudents=" + registeredStudents;
     }
 
 

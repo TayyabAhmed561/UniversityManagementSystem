@@ -3,7 +3,6 @@ package com.example.universitymanagementapp.dao;
 import com.example.universitymanagementapp.model.*;
 
 import javafx.scene.image.Image;
-import jdk.jfr.Percentage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +11,12 @@ public class StudentDAO extends Student {
     private CourseDAO courseDAO = new CourseDAO();
     private List<Course> courses;
     private List<Subject> subjects;
-    private List<Student> students = new ArrayList<>();
+    private static List<Student> students = new ArrayList<>();
 
     // Add student
     public void addStudent(Student student) {
         students.add(student);
+        System.out.println("✅ Student added: " + student.getName() + " (" + student.getStudentId() + ")");
     }
 
     // Remove student
@@ -27,8 +27,8 @@ public class StudentDAO extends Student {
     // Edit student details
     public void editStudent(String name, String studentId, Image profilePicture,
                             String address, String phoneNumber, int tuitionFees, List<Course> registeredCourses,
-                            String email, List<Grade> grades, String currentSemester, List<Subject> registeredSubjects,
-                            String academicLevel, String thesisTitle, Percentage progress) {
+                            String email, List<Grade> grades, String currentSemester, List<String> registeredSubjects,
+                            String academicLevel, String thesisTitle, double progress) {
         for (Student student : students) {
             if (student.getName().equalsIgnoreCase(name)) {
                 student.setName(name);
@@ -49,12 +49,11 @@ public class StudentDAO extends Student {
         }
     }
 
-    //view student
-    public List<Student> getStudents() {
+
+    //get all students
+    public List<Student> getAllStudents(){
         return students;
     }
 
-    //we already have enroll student in course in course section
-    //just need method to search student name from courses
-    //then if student name is in course add course to student enrolled courses
+
 }

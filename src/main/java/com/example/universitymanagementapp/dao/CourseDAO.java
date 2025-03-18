@@ -5,11 +5,10 @@ import com.example.universitymanagementapp.model.Course;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseDAO extends Course {
+public class CourseDAO {
 
-    List<Course> courses = new ArrayList<>();
+    private static List<Course> courses = new ArrayList<>();
 
-    //method to get data from service layer
 
     //add course
     public void addCourse(Course course){
@@ -27,8 +26,8 @@ public class CourseDAO extends Course {
 
     //edit course
     public void editCourse(String subjectName, String courseName, int courseCode, String instructor, int capacity,
-                           int currentEnrollment, int sectionID, String meetingDays, String meetingTime, String meetingLocation,
-                           String finalExamDate, String finalExamTime){
+                           int currentEnrollment, String sectionID, String meetingDaysTime, String meetingLocation,
+                           String finalExamDateTime){
         for(Course course : courses) {
             if(course.getCourseName().equals(courseName)){
                 course.setSubjectName(subjectName);
@@ -38,11 +37,9 @@ public class CourseDAO extends Course {
                 course.setCapacity(capacity);
                 course.setCurrentEnrollment(currentEnrollment);
                 course.setSectionID(sectionID);
-                course.setMeetingDays(meetingDays);
-                course.setMeetingTime(meetingTime);
+                course.setMeetingDaysTime(meetingDaysTime);
                 course.setMeetingLocation(meetingLocation);
-                course.setFinalExamDate(finalExamDate);
-                course.setFinalExamTime(finalExamTime);
+                course.setFinalExamDateTime(finalExamDateTime);
             }
 
         }
@@ -90,13 +87,19 @@ public class CourseDAO extends Course {
             throw new IllegalArgumentException("Invalid instructor name.");
         }
         List<Course> instructorCourses = new ArrayList<>();
+        String normalizedFacultyName = instructorName.replaceAll("[^a-zA-Z\\s]", "").trim();
         for (Course course : courses) {
-            if(course.getInstructor().equalsIgnoreCase(instructorName)){
-                instructorCourses.add(course);
+            if (course.getInstructor() != null) {
+                String normalizedInstructor = course.getInstructor().replaceAll("[^a-zA-Z\\s]", "").trim();
+                if (normalizedInstructor.equalsIgnoreCase(normalizedFacultyName)) {
+                    instructorCourses.add(course);
+                }
             }
         }
         if (instructorCourses.isEmpty()) {
-            System.out.println("No courses found for instructor: " + instructorName);
+            System.out.println("No courses found for instructor: " + instructorName + " (normalized: " + normalizedFacultyName + ")");
+        } else {
+            System.out.println("Found " + instructorCourses.size() + " courses for instructor: " + instructorName);
         }
         return instructorCourses;
     }
@@ -108,7 +111,7 @@ public class CourseDAO extends Course {
         }
         List<Course> courseStudents = new ArrayList<>();
         for (Course course : courses) {
-            if(course.getCourseName().equalsIgnoreCase(courseName)){
+            if (course.getCourseName().equalsIgnoreCase(courseName)) {
                 courseStudents.add(course);
             }
         }
@@ -118,14 +121,14 @@ public class CourseDAO extends Course {
         return courseStudents;
     }
 
-    //get all courses
-    public List<Course> getAllCourses(){
+    // Get all courses
+    public List<Course> getAllCourses() {
+        System.out.println("Total courses in CourseDAO: " + courses.size());
         return new ArrayList<>(courses);
     }
 
     @Override
-    public String toString(){
-        return "Course{ Courses: " +courses + "}";
+    public String toString() {
+        return "CourseDAO\nCourses: " + courses + "}";
     }
-
 }

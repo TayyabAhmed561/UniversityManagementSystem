@@ -10,20 +10,18 @@ public class Course {
     private String instructor;
     private int capacity;
     private int currentEnrollment;
-    private int sectionID;
-    private String meetingDays;
-    private String meetingTime;
+    private String sectionID;
+    private String meetingDaysTime;
     private String meetingLocation;
-    private String finalExamDate;
-    private String finalExamTime;
+    private String finalExamDateTime;
     private List<String> enrolledStudents;
 
     // Course constructors
     public Course() {};
 
     public Course(String subjectName, String courseName, int courseCode, String instructor, int capacity,
-                  int currentEnrollment, int sectionID, String meetingDays, String meetingTime, String meetingLocation,
-                  String finalExamDate, String finalExamTime) {
+                  int currentEnrollment, String sectionID, String meetingDaysTime, String meetingLocation,
+                  String finalExamDateTime) {
         this.subjectName = subjectName;
         this.courseName = courseName;
         this.courseCode = courseCode;
@@ -31,11 +29,9 @@ public class Course {
         this.capacity = capacity;
         this.currentEnrollment = currentEnrollment;
         this.sectionID = sectionID;
-        this.meetingDays = meetingDays;
-        this.meetingTime = meetingTime;
+        this.meetingDaysTime = meetingDaysTime;
         this.meetingLocation = meetingLocation;
-        this.finalExamDate = finalExamDate;
-        this.finalExamTime = finalExamTime;
+        this.finalExamDateTime = finalExamDateTime;
         this.enrolledStudents = new ArrayList<>();
     }
 
@@ -88,28 +84,20 @@ public class Course {
         this.currentEnrollment = currentEnrollment;
     }
 
-    public int getSectionID() {
+    public String getSectionID() {
         return sectionID;
     }
 
-    public void setSectionID(int sectionID) {
+    public void setSectionID(String sectionID) {
         this.sectionID = sectionID;
     }
 
-    public String getMeetingDays() {
-        return meetingDays;
+    public String getMeetingDaysTime() {
+        return meetingDaysTime;
     }
 
-    public void setMeetingDays(String meetingDays) {
-        this.meetingDays = meetingDays;
-    }
-
-    public String getMeetingTime() {
-        return meetingTime;
-    }
-
-    public void setMeetingTime(String meetingTime) {
-        this.meetingTime = meetingTime;
+    public void setMeetingDaysTime(String meetingDays) {
+        this.meetingDaysTime = meetingDaysTime;
     }
 
     public String getMeetingLocation() {
@@ -120,20 +108,12 @@ public class Course {
         this.meetingLocation = meetingLocation;
     }
 
-    public String getFinalExamDate() {
-        return finalExamDate;
+    public String getFinalExamDateTime() {
+        return finalExamDateTime;
     }
 
-    public void setFinalExamDate(String finalExamDate) {
-        this.finalExamDate = finalExamDate;
-    }
-
-    public String getFinalExamTime() {
-        return finalExamTime;
-    }
-
-    public void setFinalExamTime(String finalExamTime) {
-        this.finalExamTime = finalExamTime;
+    public void setFinalExamDateTime(String finalExamDateTime) {
+        this.finalExamDateTime = finalExamDateTime;
     }
 
     public List<String> getEnrolledStudents() {
@@ -148,14 +128,17 @@ public class Course {
         setCurrentEnrollment(studentCount);
     }
 
+    //create a function to enroll students in a course with the paramenter of type student.
+    //use a search by student name to pull up student details and then enroll student.
+
     @Override
     public String toString(){
         return "Course\nSubject: " +subjectName + "\nCourse Name: " +courseName
                 + "\nCourse Code: " +courseCode + "\nInstructor: " +instructor
                 + "\nCapacity: " +capacity + "\nCurrent Enrollment: " +currentEnrollment
-                + "\nSection ID: " +sectionID + "\nMeeting Days: " +meetingDays
-                + "\nMeeting Time: " +meetingTime + "\nMeeting Location: " +meetingLocation
-                + "\nFinal Exam Date: " +finalExamDate + "\nFinal Exam Time: " +finalExamTime
+                + "\nSection ID: " +sectionID + "\nMeeting Days: " +meetingDaysTime
+                + "\nMeeting Location: " +meetingLocation
+                + "\nFinal Exam Date: " +finalExamDateTime
                 + "\nEnrolled Students: " +enrolledStudents;
     }
 

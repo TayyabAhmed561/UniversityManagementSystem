@@ -2,38 +2,16 @@ package com.example.universitymanagementapp.dao;
 
 import com.example.universitymanagementapp.model.Faculty;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
+import java.util.ArrayList;
 
 public class FacultyDAO {
-    // Arraylist of faculty of type faculty
     private static List<Faculty> facultyList = new ArrayList<>();
-    public FacultyDAO() {
-        loadInitialFaculty();
-    }
 
-    private void loadInitialFaculty() {
-        facultyList.add(new Faculty("Dr. JEWHIB", "alan.turing@university.edu", "Ph.D.",
-                "Money", Arrays.asList("Econ", "Banker"),
-                "profile1.jpg", "Room 101"));
-
-        facultyList.add(new Faculty("Prof. GOONHIB", "ada.lovelace@university.edu", "Ph.D.",
-                "Computational Mathematics", Arrays.asList("Discrete Math", "Programming Theory"),
-                "profile2.jpg", "Room 102"));
-
-        facultyList.add(new Faculty("Dr. MEWHIB", "john.neumann@university.edu", "Ph.D.",
-                "Game Theory", Arrays.asList("Probability Theory", "Quantum Mechanics"),
-                "profile3.jpg", "Room 201"));
-
-        System.out.println("✅ Initial Faculty Data Loaded!");
-    }
-
-    // add faculty member to to the list
+    // add faculty member to the list
     public void addFaculty(Faculty faculty) {
         facultyList.add(faculty);
-        System.out.println("Faculty added successfully!");
+        System.out.println("Faculty added successfully!" + faculty.getUsername());
     }
 
     // updates info of existing faculty member
@@ -44,7 +22,6 @@ public class FacultyDAO {
                 faculty.setDegree(updatedFaculty.getDegree());
                 faculty.setResearchInterest(updatedFaculty.getResearchInterest());
                 faculty.setCoursesOffered(updatedFaculty.getCoursesOffered());
-                faculty.setProfilePhoto(updatedFaculty.getProfilePhoto());
                 faculty.setOfficeLocation(updatedFaculty.getOfficeLocation());
                 System.out.println("Faculty updated successfully!");
                 break;
@@ -62,6 +39,14 @@ public class FacultyDAO {
     public Faculty getFacultyByEmail(String email) {
         return facultyList.stream()
                 .filter(faculty -> faculty.getEmail().equals(email))
+                .findFirst()
+                .orElse(null);
+    }
+
+    //finds faculty by username
+    public Faculty getFacultyByUsername(String username) {
+        return facultyList.stream()
+                .filter(faculty -> faculty.getUsername().equals(username))
                 .findFirst()
                 .orElse(null);
     }
