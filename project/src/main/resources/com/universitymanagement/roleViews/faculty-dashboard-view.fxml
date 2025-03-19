@@ -2,27 +2,60 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.universitymanagement.controller.FacultyController.FacultyDashboardController"
-      prefWidth="1000" prefHeight="700"
-      style="-fx-padding: 40; -fx-alignment: center; -fx-spacing: 30;">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.universitymanagement.controller.FacultyController.FacultyDashboardController"
+            style="-fx-background-color: #f5f5f5;"
+            prefWidth="1000" prefHeight="700">
 
-    <Label text="Faculty Dashboard" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+    <!-- Top Header -->
+    <top>
+        <HBox style="-fx-background-color: #3a3a3a; -fx-padding: 10px; -fx-alignment: center;">
+            <Label text="Faculty Dashboard" style="-fx-text-fill: white; -fx-font-size: 20px;" />
+        </HBox>
+    </top>
 
-    <Button text="View Student Information"
-            onAction="#handleViewStudentInformation"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
+    <!-- Left sidebar with toggle mechanism -->
+    <left>
+        <HBox>
+            <!-- Hamburger menu button that's always visible -->
+            <VBox alignment="TOP_CENTER" style="-fx-background-color: transparent; -fx-padding: 10;">
+                <Button fx:id="menuToggleButton" text="☰"
+                        style="-fx-background-color: transparent; -fx-text-fill: #333; -fx-font-size: 20px;"
+                        onAction="#toggleMenu"/>
+            </VBox>
 
-    <Button text="Manage My Courses"
-            onAction="#handleManageCourses"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
+            <!-- Collapsible sidebar - starts with width 0 -->
+            <VBox fx:id="sidebarMenu" prefWidth="0" maxWidth="250"
+                  style="-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-opacity: 0;">
 
-    <Button text="View Events"
-            onAction="#handleViewEvents"
-            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
+                <Label text="Faculty Portal"
+                       style="-fx-text-fill: #333; -fx-font-size: 16px; -fx-padding: 10 0 10 0;" />
 
-    <Button text="Logout"
-            onAction="#handleLogoutAction"
-            style="-fx-background-color: #B22222; -fx-text-fill: white; -fx-font-size: 20px; -fx-min-width: 350px;" />
-</VBox>
+                <VBox spacing="5">
+                    <Button text="Dashboard" onAction="#loadDashboard"
+                            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-padding: 10; -fx-pref-width: 230;" />
+                    <Button text="My Courses" onAction="#handleManageCourses"
+                            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-padding: 10; -fx-pref-width: 230;" />
+                    <Button text="Student Information" onAction="#handleViewStudentInformation"
+                            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-padding: 10; -fx-pref-width: 230;" />
+                    <Button text="Events" onAction="#handleViewEvents"
+                            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-padding: 10; -fx-pref-width: 230;" />
+                    <Button text="Profile" onAction="#handleViewProfile"
+                            style="-fx-background-color: #4682B4; -fx-text-fill: white; -fx-padding: 10; -fx-pref-width: 230;" />
+                    <Button text="Logout" onAction="#handleLogoutAction"
+                            style="-fx-background-color: #B22222; -fx-text-fill: white; -fx-padding: 10; -fx-pref-width: 230;" />
+                </VBox>
+            </VBox>
+        </HBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" />
+    </center>
+
+</BorderPane>

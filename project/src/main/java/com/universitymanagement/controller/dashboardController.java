@@ -1,6 +1,9 @@
 package com.universitymanagement.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
 
 public class dashboardController {
@@ -9,13 +12,14 @@ public class dashboardController {
     private StackPane contentPane;
 
     @FXML
-    public void loadHome() {
-        System.out.println("Home loaded!");
-    }
+    private VBox menuItems;  // FIXED: Now declared to prevent "Cannot resolve symbol 'menuItems'"
 
     @FXML
-    public void handleLogout() {
-        System.out.println("Logout successful!");
+    private ToggleButton menuToggle; // Toggle button for sidebar
+
+    @FXML
+    public void loadDashboard() {
+        System.out.println("Dashboard loaded!");
     }
 
     @FXML
@@ -41,5 +45,14 @@ public class dashboardController {
     @FXML
     public void loadEventManagement() {
         System.out.println("Event Management loaded!");
+    }
+
+    // Toggle Sidebar Menu Visibility
+    @FXML
+    public void toggleMenu(ActionEvent actionEvent) {
+        if (menuItems != null) {
+            boolean isVisible = menuItems.isVisible();
+            menuItems.setVisible(!isVisible);
+        }
     }
 }
