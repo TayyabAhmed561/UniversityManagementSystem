@@ -3,7 +3,7 @@ package com.example.universitymanagementapp;
 import com.example.universitymanagementapp.auth.authenticator.UserAuthentication;
 import com.example.universitymanagementapp.dao.*;
 import com.example.universitymanagementapp.model.Admins;
-import com.example.universitymanagementapp.utils.ExcelImporter;
+import com.example.universitymanagementapp.utils.ExImporter;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -51,7 +51,7 @@ public class UniversityManagementApp extends Application {
             Admins admin = new Admins("admin1", "pass", "name");
             adminDAO.addAdmin(admin);
 
-            ExcelImporter importer = new ExcelImporter(courseDAO, studentDAO, facultyDAO, subjectDAO, eventDAO);
+            ExImporter importer = new ExImporter(courseDAO, studentDAO, facultyDAO, subjectDAO, eventDAO);
             importer.importData();
             UserAuthentication.initialize(facultyDAO, studentDAO, adminDAO);
             UserAuthentication.populateUsers();

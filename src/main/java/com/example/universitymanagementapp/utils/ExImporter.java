@@ -1,43 +1,54 @@
 package com.example.universitymanagementapp.utils;
 
 import com.example.universitymanagementapp.model.*;
-import com.example.universitymanagementapp.dao.*;
+import com.example.universitymanagementapp.dao.CourseDAO;
+import com.example.universitymanagementapp.dao.StudentDAO;
+import com.example.universitymanagementapp.dao.FacultyDAO;
+import com.example.universitymanagementapp.dao.SubjectDAO;
+import com.example.universitymanagementapp.dao.EventDAO;
 import javafx.scene.image.Image;
+
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ExcelImporter {
+public class ExImporter {
+    private static final String FILE_PATH = "C:/Users/adria/IdeaProjects/UniversityManagementApplication/src/main/resources/UMS_Data.xlsx";// Path to your Excel file
     private CourseDAO courseService;
     private StudentDAO studentService;
     private FacultyDAO facultyService;
     private SubjectDAO subjectService;
     private EventDAO eventService;
 
-    public ExcelImporter() {}
+    public ExImporter() {};
 
-    public ExcelImporter(CourseDAO courseService, StudentDAO studentService,
-                         FacultyDAO facultyService, SubjectDAO subjectService,
-                         EventDAO eventService) {
+    public ExImporter(CourseDAO courseService, StudentDAO studentService,
+                      FacultyDAO facultyService, SubjectDAO subjectService,
+                      EventDAO eventService) {
         this.courseService = courseService;
         this.studentService = studentService;
         this.facultyService = facultyService;
         this.subjectService = subjectService;
         this.eventService = eventService;
     }
+    public void checkFilePath(String FILE_PATH){
+        if (FILE_PATH == null || FILE_PATH.isEmpty()) {
+            System.out.println("File path is empty or null!");
+        }
+    }
 
     public void importData() {
-        try (InputStream file = ExcelImporter.class.getResourceAsStream("/UMS_Data.xlsx")) {
-            if (file == null) {
-                throw new FileNotFoundException("Excel file 'UMS_Data.xlsx' not found in src/main/resources/");
-            }
+        checkFilePath(FILE_PATH);
+        try (InputStream file = new FileInputStream(FILE_PATH)) {
             try (Workbook workbook = new XSSFWorkbook(file)) {
-                // Log the sheets for debugging
+
                 for (Sheet sheet : workbook) {
                     System.out.println("Sheet Name: " + sheet.getSheetName());
                 }
+
 
                 // Read each sheet and populate respective service classes
                 readCourses(workbook.getSheet("Courses"));
@@ -47,10 +58,10 @@ public class ExcelImporter {
                 readEvents(workbook.getSheet("Events"));
 
                 System.out.println("✅ Data successfully imported from Excel!");
+
             }
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -59,9 +70,6 @@ public class ExcelImporter {
         if (sheet == null) return;
         Iterator<Row> rowIterator = sheet.iterator();
         rowIterator.next(); // Skip header row
-
-        //need to get subject code and translate to subject name?
-
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
@@ -72,38 +80,60 @@ public class ExcelImporter {
                     (int) getNumericValue(row.getCell(0)), // Course Code
                     getStringValue(row.getCell(8)), // Instructor
                     (int) getNumericValue(row.getCell(4)), // Capacity
-                    0,
+                    0, // currentEnrollment (will be set after loading enrolledStudents)
                     getStringValue(row.getCell(3)), // Section ID
                     getStringValue(row.getCell(5)), // Meeting Days/Time
                     getStringValue(row.getCell(7)), // Location
                     getStringValue(row.getCell(6))  // Final Exam Date/Time
             );
+            // Load enrolled students
+            String enrolledStudentsStr = getStringValue(row.getCell(9));
+            List<String> enrolledStudents = new ArrayList<>();
+            if (!enrolledStudentsStr.isEmpty()) {
+                enrolledStudents = Arrays.asList(enrolledStudentsStr.split("\\s*,\\s*"));
+            }
+            course.setEnrolledStudents(enrolledStudents);
+            // Set currentEnrollment based on enrolledStudents
+            course.setCurrentEnrollment(enrolledStudents.size());
             courseService.addCourse(course);
         }
     }
 
     //read students from sheet
-    private void readStudents(Sheet sheet){
-        if (sheet == null) return;
+    private void readStudents(Sheet sheet) {
+        if (sheet == null) {
+            System.out.println("Students sheet not found in Excel file.");
+            return;
+        }
         System.out.println("Reading students from Excel...");
         Iterator<Row> rowIterator = sheet.iterator();
+        if (!rowIterator.hasNext()) {
+            System.out.println("Students sheet is empty.");
+            return;
+        }
         rowIterator.next(); // Skip header row
-        List<Course> registeredCourses = new ArrayList<>();
-        List<Grade> grades = new ArrayList<>();
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
-            if (isRowEmpty(row)) continue;  // Skip empty rows
+            if (isRowEmpty(row)) continue;
+
+            // Log the raw row data
+            System.out.println("Processing row " + row.getRowNum() + ":");
+            for (int i = 0; i <= 11; i++) {
+                System.out.println("Column " + i + ": " + getStringValue(row.getCell(i)));
+            }
+
+            List<Course> registeredCourses = new ArrayList<>();
+            Map<Integer, Grade> grades = new HashMap<>();
 
             String profilePicturePath = getStringValue(row.getCell(7));
             Image profilePicture;
-            if ("default".equalsIgnoreCase(profilePicturePath)){
+            if ("default".equalsIgnoreCase(profilePicturePath)) {
                 profilePicture = new Image(getClass().getResourceAsStream("/images/default.jpg"));
             } else {
                 profilePicture = new Image(profilePicturePath);
             }
 
-            // Separate courses
             String subjectsString = getStringValue(row.getCell(8));
             List<String> registeredSubjects = new ArrayList<>();
             if (!subjectsString.isEmpty()) {
@@ -111,7 +141,7 @@ public class ExcelImporter {
             }
 
             Student student = new Student(
-                    getStringValue(row.getCell(0)),  // StudentId, Username
+                    getStringValue(row.getCell(0)),  // Username
                     getStringValue(row.getCell(11)), // Password
                     getStringValue(row.getCell(1)),  // Name
                     getStringValue(row.getCell(0)),  // ID
@@ -129,7 +159,10 @@ public class ExcelImporter {
                     getNumericValue(row.getCell(10)) * 100 // Progress
             );
             studentService.addStudent(student);
-            System.out.println("Importing student: "+ student.getStudentId() + " " + student.getName());
+            System.out.println("Imported student: " + student.getStudentId() + " " + student.getName() +
+                    ", Email: " + student.getEmail() + ", Phone: " + student.getPhoneNumber() +
+                    ", Address: " + student.getAddress() + ", Academic Level: " + student.getAcademicLevel() +
+                    ", Current Semester: " + student.getCurrentSemester() + ", Progress: " + student.getProgress());
         }
     }
 
@@ -242,6 +275,12 @@ public class ExcelImporter {
 
     private String getStringValue(Cell cell) {
         if (cell == null) return "";
+        // Check if cell is numeric and formatted as a date
+        if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
+            Date date = cell.getDateCellValue();
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm"); // adjust the format as needed
+            return sdf.format(date);
+        }
         return switch (cell.getCellType()) {
             case STRING -> cell.getStringCellValue();
             case NUMERIC -> String.valueOf((int) cell.getNumericCellValue());
