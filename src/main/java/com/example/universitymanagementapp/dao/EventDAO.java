@@ -49,4 +49,8 @@ public class EventDAO {
         return events;
     }
 
+
+    public void clearEvents(){
+        events.clear();
+    }
 }

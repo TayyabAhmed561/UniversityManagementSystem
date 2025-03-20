@@ -1,9 +1,8 @@
 package com.example.universitymanagementapp.dao;
 
-import com.example.universitymanagementapp.model.Subject;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import com.example.universitymanagementapp.model.Subject;
 
 public class SubjectDAO {
     private static List<Subject> subjects = new ArrayList<>();
@@ -15,11 +14,7 @@ public class SubjectDAO {
 
     //remove subject
     public void removeSubject(String subjectName){
-        for (Subject subject : subjects){
-            if (subject.getSubjectName().equalsIgnoreCase(subjectName)){
-                subjects.remove(subject);
-            }
-        }
+        subjects.removeIf(subject -> subject.getSubjectName().equalsIgnoreCase(subjectName));
     }
 
     //edit/update subject
@@ -46,6 +41,10 @@ public class SubjectDAO {
         return subjects;
     }
 
+
+    public void clearSubjects(){
+        subjects.clear();
+    }
 
 
 }

@@ -51,8 +51,23 @@ public class FacultyDAO {
                 .orElse(null);
     }
 
+    //get logged in faculty
+    public static String getLoggedInFaculty(String username) {
+        for (Faculty faculty : facultyList) {
+            if (faculty.getUsername().equals(username)) {
+                return faculty.getName();
+            }
+        }
+        return null;
+    }
+
     // returns all faculty list
     public List<Faculty> getAllFaculty() {
         return facultyList;
     }
+
+    public void clearFaculty(){
+        facultyList.clear();
+    }
 }
+
