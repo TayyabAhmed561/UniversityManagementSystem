@@ -1,8 +1,6 @@
 package com.example.universitymanagementapp.model;
 
-import com.example.universitymanagementapp.model.User;
-
-public class Admins extends User {
+public class Admins extends User{
     private String name;
 
     public Admins(String username, String password, String name) {
@@ -27,5 +25,6 @@ public class Admins extends User {
 
 
 }
+
 
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    private String subjectName;
+    private String subjectCode;
     private String courseName;
     private int courseCode;
     private String instructor;
@@ -22,7 +22,7 @@ public class Course {
     public Course(String subjectName, String courseName, int courseCode, String instructor, int capacity,
                   int currentEnrollment, String sectionID, String meetingDaysTime, String meetingLocation,
                   String finalExamDateTime) {
-        this.subjectName = subjectName;
+        this.subjectCode = subjectName;
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.instructor = instructor;
@@ -36,12 +36,12 @@ public class Course {
     }
 
     // Getter & Setter methods
-    public String getSubjectName() {
-        return subjectName;
+    public String getSubjectCode() {
+        return subjectCode;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setSubjectCode(String subjectCode) {
+        this.subjectCode = subjectCode;
     }
 
     public String getCourseName() {
@@ -120,6 +120,10 @@ public class Course {
         return enrolledStudents;
     }
 
+    public void setEnrolledStudents(List<String> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
+    }
+
 
     //enroll a student
     public void enrollStudent(String studentName) {
@@ -133,7 +137,7 @@ public class Course {
 
     @Override
     public String toString(){
-        return "Course\nSubject: " +subjectName + "\nCourse Name: " +courseName
+        return "Course\nSubject: " + subjectCode + "\nCourse Name: " +courseName
                 + "\nCourse Code: " +courseCode + "\nInstructor: " +instructor
                 + "\nCapacity: " +capacity + "\nCurrent Enrollment: " +currentEnrollment
                 + "\nSection ID: " +sectionID + "\nMeeting Days: " +meetingDaysTime
@@ -143,4 +147,3 @@ public class Course {
     }
 
 }
-

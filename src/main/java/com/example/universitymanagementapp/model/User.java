@@ -7,11 +7,13 @@ import java.util.ArrayList;
 public class User {
     private String username;
     private String hashedPassword;
+    private String plaintextPassword;
     private String role;
 
     public User(String username, String password, String role) {
         this.username = username;
         this.role = role;
+        this.plaintextPassword = password;
         this.hashedPassword = PasswordHasher.hashPassword(password);
     }
 
@@ -28,7 +30,11 @@ public class User {
         return hashedPassword;
     }
     public void setPassword(String password) {
-        this.hashedPassword = password;
+        this.plaintextPassword = password;
+        this.hashedPassword = PasswordHasher.hashPassword(password);
+    }
+    public String getPlaintextPassword() {
+        return plaintextPassword != null ? plaintextPassword : "";
     }
     public String getRole() {
         return role;
@@ -48,8 +54,10 @@ public class User {
         users.add(user);
     }
 
+
     @Override
     public String toString() {
         return "User\nusername='" + username + "\npassword='" + hashedPassword + "\nrole='" + role;
     }
 }
+
