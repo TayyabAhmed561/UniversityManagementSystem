@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementapp.controller.CourseController.CourseStudentController">
+    <children>
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <tabs>
+                <Tab closable="false" text="Enrolled Courses">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <TableView fx:id="enrolledCoursesTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn fx:id="courseCodeColumn" prefWidth="100" text="Course Code" />
+                                        <TableColumn fx:id="courseNameColumn" prefWidth="150" text="Course Name" />
+                                        <TableColumn fx:id="subjectNameColumn" prefWidth="150" text="Subject" />
+                                        <TableColumn fx:id="instructorColumn" prefWidth="100" text="Instructor" />
+                                        <TableColumn fx:id="capacityColumn" prefWidth="80" text="Capacity" />
+                                        <TableColumn fx:id="enrollmentColumn" prefWidth="80" text="Enrolled" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Search Courses">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <TextField fx:id="courseSearch" prefWidth="200.0" promptText="Search by name, code, or subject" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <TableView fx:id="searchResultsTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                    <columns>
+                                        <TableColumn fx:id="searchCourseCodeColumn" prefWidth="100" text="Course Code" />
+                                        <TableColumn fx:id="searchCourseNameColumn" prefWidth="150" text="Course Name" />
+                                        <TableColumn fx:id="searchSubjectNameColumn" prefWidth="150" text="Subject" />
+                                        <TableColumn fx:id="searchInstructorColumn" prefWidth="100" text="Instructor" />
+                                        <TableColumn fx:id="searchCapacityColumn" prefWidth="80" text="Capacity" />
+                                        <TableColumn fx:id="searchEnrollmentColumn" prefWidth="80" text="Enrolled" />
+                                    </columns>
+                                </TableView>
+                                <Button fx:id="viewDetailsButton" onAction="#handleViewDetails" text="View Details" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Course Details">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label text="Course Code:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <Label fx:id="courseCodeLabel" layoutX="129.0" layoutY="10.0" text="N/A" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="10.0" />
+                                <Label text="Course Name:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0" />
+                                <Label fx:id="courseNameLabel" layoutX="129.0" layoutY="40.0" text="N/A" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="40.0" />
+                                <Label text="Subject:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0" />
+                                <Label fx:id="subjectNameLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
+                                <Label text="Instructor:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0" />
+                                <Label fx:id="instructorLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                                <Label text="Capacity:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                                <Label fx:id="capacityLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="130.0" />
+                                <Label text="Enrolled:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="160.0" />
+                                <Label fx:id="enrollmentLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="160.0" />
+                                <Label text="Meeting Days/Time:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="190.0" />
+                                <Label fx:id="meetingDaysLabel" layoutX="171.0" layoutY="190.0" text="N/A" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="190.0" />
+                                <Label text="Final Exam Date/Time:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0" />
+                                <Label fx:id="finalExamDateLabel" layoutX="185.0" layoutY="220.0" text="N/A" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="220.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="581.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    </children>
+</AnchorPane>

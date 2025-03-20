@@ -1,0 +1,184 @@
+.border-pane {
+    -fx-background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Toolbar styling */
+.tool-bar {
+    -fx-background-color: #333333; /* Dark gray toolbar */
+}
+
+/* TabPane styling */
+.tab-pane {
+    -fx-background-color: #ffffff; /* White background for tabs */
+    -fx-padding: 10;
+}
+
+/* Tab header styling */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #e0e0e0; /* Light gray tab header background */
+}
+
+.tab-pane .tab {
+    -fx-background-color: #e0e0e0;
+    -fx-pref-width: 150; /* Fixed width for tabs to prevent stretching */
+}
+
+.border-pane {
+    -fx-background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Toolbar styling */
+.tool-bar {
+    -fx-background-color: #333333; /* Dark gray toolbar */
+}
+
+/* TabPane styling */
+.tab-pane {
+    -fx-background-color: #ffffff; /* White background for tabs */
+    -fx-padding: 10;
+}
+
+/* Tab header styling */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #e0e0e0; /* Light gray tab header background */
+}
+
+.tab-pane .tab {
+    -fx-background-color: #e0e0e0;
+    -fx-pref-width: 150; /* Fixed width for tabs to prevent stretching */
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #333333;
+    -fx-border-width: 0 0 2 0; /* Underline effect for selected tab */
+}
+
+/* VBox styling */
+.vbox {
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+}
+
+/* SplitPane styling */
+.split-pane {
+    -fx-background-color: #ffffff;
+}
+
+.split-pane-divider {
+    -fx-background-color: #d0d0d0;
+    -fx-pref-width: 2;
+}
+
+/* HBox styling */
+.hbox {
+    -fx-padding: 5;
+}
+
+/* TableView styling */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 1;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f0f0f0;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center-left;
+    -fx-padding: 5;
+}
+
+/* TextField and ComboBox styling */
+.text-field, .combo-box {
+    -fx-pref-width: 200;
+    -fx-max-width: Infinity; /* Allow TextField and ComboBox to stretch */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3;
+    -fx-padding: 5;
+}
+
+/* Button styling */
+.button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Slightly darker green on hover */
+}
+
+/* Specific button styling */
+#unenrollButton, #deleteButton {
+    -fx-background-color: #f44336; /* Red for unenroll/delete buttons */
+}
+
+#unenrollButton:hover, #deleteButton:hover {
+    -fx-background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Text styling */
+.text {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+/* Ensure components in the "Manage Students" tab scale properly */
+#leftPane, #rightPane {
+    -fx-padding: 10;
+}
+
+.combo-box {
+    -fx-pref-width: 200;
+    -fx-max-width: Infinity;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3;
+    -fx-padding: 5;
+    -fx-max-height: 30; /* Limit the height of the ComboBox itself */
+}
+
+/* Style the dropdown list to ensure it looks good when scrolling */
+.combo-box .list-view {
+    -fx-pref-height: 150; /* Set a reasonable height for the dropdown */
+}
+
+#removeStudentButton {
+    -fx-background-color: #f44336; /* Red for remove student button */
+}
+
+#removeStudentButton:hover {
+    -fx-background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Label styling for headers */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333; /* Dark gray text to match the toolbar */
+}
+
+.grid-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-padding: 5;
+}
+
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 3;
+}
+
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 3;
+}

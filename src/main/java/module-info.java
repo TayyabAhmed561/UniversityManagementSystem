@@ -27,6 +27,8 @@ module com.example.universitymanagementapp {
     opens com.example.universitymanagementapp.controller.SubjectController to javafx.fxml;
     exports com.example.universitymanagementapp.controller.EventController to javafx.fxml;
     opens com.example.universitymanagementapp.controller.EventController to javafx.fxml;
+    exports com.example.universitymanagementapp.controller.AdminController to javafx.fxml;
+    opens com.example.universitymanagementapp.controller.AdminController to javafx.fxml;
 
     opens com.example.universitymanagementapp.model to javafx.base;
 

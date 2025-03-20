@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@admin-students-management.css"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.universitymanagementapp.controller.FacultyController.FacultyFacultyController">
+    <!-- Top toolbar with page title -->
+    <children>
+        <ToolBar fx:id="toolBar" prefHeight="39.0" prefWidth="600.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <tabs>
+                <!-- Tab showing all faculty members -->
+                <Tab closable="false" text="All Faculty">
+                    <content>
+                        <TableView fx:id="allFacultyTable">
+                            <columns>
+                                <TableColumn fx:id="facultyIdColumn" prefWidth="80.0" text="ID" />
+                                <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
+                                <TableColumn fx:id="departmentColumn" prefWidth="150.0" text="Department" />
+                                <TableColumn fx:id="emailColumn" prefWidth="150.0" text="Email" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <!-- Tab showing the faculty selected by the user -->
+                <Tab closable="false" text="Selected Faculty">
+                    <content>
+                        <TableView fx:id="selectedFacultyTable">
+                            <columns>
+                                <TableColumn fx:id="selectedFacultyIdColumn" prefWidth="80.0" text="ID" />
+                                <TableColumn fx:id="selectedNameColumn" prefWidth="150.0" text="Name" />
+                                <TableColumn fx:id="selectedDepartmentColumn" prefWidth="150.0" text="Department" />
+                                <TableColumn fx:id="selectedEmailColumn" prefWidth="150.0" text="Email" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

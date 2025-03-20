@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.example.universitymanagementapp.controller.CourseController.CourseFacultyController">
+    <children>
+        <ToolBar fx:id="toolBar" prefHeight="39.0" prefWidth="600.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <tabs>
+                <!-- Tab 1: All Courses -->
+                <Tab closable="false" text="All Courses">
+                    <content>
+                        <TableView fx:id="allCoursesTable">
+                            <columns>
+                                <TableColumn fx:id="courseCodeColumn" prefWidth="80.0" text="Code" />
+                                <TableColumn fx:id="subjectCodeColumn" prefWidth="100.0" text="Subject" />
+                                <TableColumn fx:id="courseNameColumn" prefWidth="150.0" text="Course Name" />
+                                <TableColumn fx:id="instructorColumn" prefWidth="100.0" text="Instructor" />
+                                <TableColumn fx:id="capacityColumn" prefWidth="60.0" text="Capacity" />
+                                <TableColumn fx:id="enrollmentColumn" prefWidth="70.0" text="Enrolled" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <!-- Tab 2: My Courses -->
+                <Tab closable="false" text="My Courses">
+                    <content>
+                        <TableView fx:id="myCoursesTable">
+                            <columns>
+                                <TableColumn fx:id="myCourseCodeColumn" prefWidth="80.0" text="Code" />
+                                <TableColumn fx:id="mySubjectCodeColumn" prefWidth="100.0" text="Subject" />
+                                <TableColumn fx:id="myCourseNameColumn" prefWidth="150.0" text="Course Name" />
+                                <TableColumn fx:id="myCapacityColumn" prefWidth="60.0" text="Capacity" />
+                                <TableColumn fx:id="myEnrollmentColumn" prefWidth="70.0" text="Enrolled" />
+                                <TableColumn fx:id="myMeetingDaysColumn" prefWidth="100.0" text="Meeting Days" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
+

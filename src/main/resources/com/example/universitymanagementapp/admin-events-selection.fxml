@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.HBox?>
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementapp.controller.EventController.EventAdminController">
+    <children>
+        <!-- Toolbar at the top -->
+        <ToolBar layoutX="0.0" layoutY="0.0" prefHeight="39.0" prefWidth="600.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+        <!-- TabPane for different sections -->
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+            <tabs>
+                <!-- Tab 1: Calendar View -->
+                <Tab closable="false" text="Calendar View">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <!-- Calendar Grid -->
+                                <GridPane fx:id="calendarGrid" hgap="5" vgap="5" styleClass="grid-pane" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <!-- Days of the week as headers -->
+                                    <Label styleClass="text" text="Sun" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                    <Label styleClass="text" text="Mon" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label styleClass="text" text="Tue" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                    <Label styleClass="text" text="Wed" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                    <Label styleClass="text" text="Thu" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                                    <Label styleClass="text" text="Fri" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                                    <Label styleClass="text" text="Sat" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- Tab 2: All Events -->
+                <Tab closable="false" text="All Events">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <!-- Buttons for Add, Edit, Delete -->
+                                <HBox fx:id="allEventsHBox" spacing="10.0" styleClass="hbox" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <Button fx:id="addButton" onAction="#handleAddEvent" text="Add Event" />
+                                        <Button fx:id="editButton" onAction="#handleEditEvent" text="Edit Event" />
+                                        <Button fx:id="deleteButton" onAction="#handleDeleteEvent" text="Delete Event" />
+                                    </children>
+                                </HBox>
+                                <!-- TableView for all events -->
+                                <TableView fx:id="allEventsTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                    <columns>
+                                        <TableColumn fx:id="codeColumn" text="Code" />
+                                        <TableColumn fx:id="nameColumn" text="Name" />
+                                        <TableColumn fx:id="dateColumn" text="Date" />
+                                        <TableColumn fx:id="locationColumn" text="Location" />
+                                        <TableColumn fx:id="capacityColumn" text="Capacity" />
+                                        <TableColumn fx:id="costColumn" text="Cost" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- Tab 3: Search -->
+                <Tab closable="false" text="Search">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <!-- Search bar -->
+                                <TextField fx:id="eventSearch" promptText="Search by name, code, or location" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <!-- TableView for search results -->
+                                <TableView fx:id="searchResultsTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                    <columns>
+                                        <TableColumn fx:id="searchCodeColumn" text="Code" />
+                                        <TableColumn fx:id="searchNameColumn" text="Name" />
+                                        <TableColumn fx:id="searchDateColumn" text="Date" />
+                                        <TableColumn fx:id="searchLocationColumn" text="Location" />
+                                        <TableColumn fx:id="searchCapacityColumn" text="Capacity" />
+                                        <TableColumn fx:id="searchCostColumn" text="Cost" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- Tab 4: Manage Events -->
+                <Tab closable="false" text="Manage Events">
+                    <content>
+                        <AnchorPane fx:id="manageEventsPane" styleClass="anchor-pane">
+                            <children>
+                                <!-- Event Form Section -->
+                                <Text styleClass="text" text="Event Form" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <TextField fx:id="codeField" promptText="Code" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" />
+                                <TextField fx:id="nameField" promptText="Name" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0" />
+                                <TextArea fx:id="descriptionField" promptText="Description" styleClass="text-area" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="120.0" prefHeight="60.0" />
+                                <TextField fx:id="locationField" promptText="Location" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="190.0" />
+                                <DatePicker fx:id="datePicker" promptText="Date" styleClass="date-picker" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="230.0" />
+                                <TextField fx:id="timeField" promptText="Time (HH:MM)" styleClass="text-field" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="230.0" prefWidth="100.0" />
+                                <TextField fx:id="capacityField" promptText="Capacity" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="270.0" />
+                                <TextField fx:id="costField" promptText="Cost" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="310.0" />
+
+                                <!-- Registration Management Section -->
+                                <Text styleClass="text" text="Manage Registrations" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="350.0" />
+                                <ComboBox fx:id="studentComboBox" promptText="Select Student" styleClass="combo-box" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="380.0" />
+                                <Button fx:id="registerButton" onAction="#handleRegisterStudent" text="Register" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="380.0" />
+                                <Button fx:id="unregisterButton" onAction="#handleUnregisterStudent" text="Unregister" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="380.0" />
+                                <TableView fx:id="registeredStudentsTable" styleClass="table-view" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="420.0">
+                                    <columns>
+                                        <TableColumn fx:id="studentIdColumn" text="Student ID" />
+                                        <TableColumn fx:id="studentNameColumn" text="Student Name" />
+                                    </columns>
+                                </TableView>
+
+                                <!-- Save and Clear Buttons -->
+                                <Button fx:id="saveButton" onAction="#handleSaveEvent" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                <Button fx:id="clearButton" onAction="#handleClearForm" text="Clear" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

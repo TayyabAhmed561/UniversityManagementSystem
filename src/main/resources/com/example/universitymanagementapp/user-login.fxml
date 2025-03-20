@@ -8,18 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementapp.auth.UserLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.example.universitymanagementapp.auth.UserLoginController">
     <children>
         <ImageView fitHeight="498.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/project-image.png" />
-         </image></ImageView>
+            <image>
+                <Image url="@../../../images/project-image.png" />
+            </image>
+        </ImageView>
         <Pane layoutX="150.0" layoutY="75.0" prefHeight="225.0" prefWidth="300.0" style="-fx-background-color: rgba(0, 0, 0, 0.3); -fx-background-radius: 5; -fx-border-color: black; -fx-border-radius: 5;">
             <children>
                 <ImageView fitHeight="62.0" fitWidth="64.0" layoutX="118.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/university_of_guelph_logo.png" />
-               </image></ImageView>
+                    <image>
+                        <Image url="@../../../images/university_of_guelph_logo.png" />
+                    </image>
+                </ImageView>
                 <PasswordField fx:id="userPasswordField" layoutX="74.0" layoutY="137.0" promptText="Enter Password" />
                 <TextField fx:id="usernameField" layoutX="74.0" layoutY="100.0" promptText="Enter Username" />
                 <Button fx:id="userLoginButton" layoutX="123.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleUserLogin" style="-fx-background-color: rgb(173,0,41);" text="Login" />

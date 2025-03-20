@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.HBox?>
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementapp.controller.FacultyController.AdminFacultyController">
+    <children>
+        <!-- Toolbar at the top -->
+        <ToolBar layoutX="0.0" layoutY="0.0" prefHeight="39.0" prefWidth="600.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+        <!-- TabPane for different sections -->
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+            <tabs>
+                <!-- Tab 1: All Faculty -->
+                <Tab closable="false" text="All Faculty">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <!-- Buttons for Add, Edit, Delete -->
+                                <HBox fx:id="allFacultyHBox" spacing="10.0" styleClass="hbox" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <Button fx:id="addButton" onAction="#handleAddFaculty" text="Add Faculty" />
+                                        <Button fx:id="editButton" onAction="#handleEditFaculty" text="Edit Faculty" />
+                                        <Button fx:id="deleteButton" onAction="#handleDeleteFaculty" text="Delete Faculty" />
+                                    </children>
+                                </HBox>
+                                <!-- TableView for all faculty -->
+                                <TableView fx:id="allFacultyTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                    <columns>
+                                        <TableColumn fx:id="nameColumn" text="Name" />
+                                        <TableColumn fx:id="facultyIdColumn" text="Faculty ID" />
+                                        <TableColumn fx:id="researchInterestColumn" text="Research Interest" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- Tab 2: Search -->
+                <Tab closable="false" text="Search">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <!-- Search bar -->
+                                <TextField fx:id="facultySearch" promptText="Search by name or ID" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <!-- TableView for search results -->
+                                <TableView fx:id="searchResultsTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                    <columns>
+                                        <TableColumn fx:id="searchNameColumn" text="Name" />
+                                        <TableColumn fx:id="searchFacultyIdColumn" text="Faculty ID" />
+                                        <TableColumn fx:id="searchResearchInterestColumn" text="Research Interest" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <!-- Tab 3: Manage Faculty -->
+                <Tab closable="false" text="Manage Faculty">
+                    <content>
+                        <AnchorPane fx:id="manageFacultyPane" styleClass="anchor-pane">
+                            <children>
+                                <!-- Faculty Form Section -->
+                                <Text styleClass="text" text="Faculty Form" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <TextField fx:id="nameField" promptText="Name" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0" />
+                                <TextField fx:id="facultyIdField" promptText="Faculty ID" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0" />
+                                <TextField fx:id="passwordField" promptText="Password" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="120.0" />
+                                <TextField fx:id="emailField" promptText="Email" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
+                                <TextField fx:id="degreeField" promptText="Degree" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="200.0" />
+                                <TextField fx:id="researchInterestField" promptText="Research Interest" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="240.0" />
+                                <TextField fx:id="officeLocationField" promptText="Office Location" styleClass="text-field" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="280.0" />
+
+                                <!-- Course Assignment Section -->
+                                <Text styleClass="text" text="Assign Courses" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="320.0" />
+                                <ComboBox fx:id="courseComboBox" promptText="Select Course" styleClass="combo-box" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="350.0" />
+                                <Button fx:id="assignButton" onAction="#handleAssignCourse" text="Assign" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="350.0" />
+                                <Button fx:id="unassignButton" onAction="#handleUnassignCourse" text="Unassign" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="350.0" />
+                                <TableView fx:id="assignedCoursesTable" styleClass="table-view" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="390.0">
+                                    <columns>
+                                        <TableColumn fx:id="assignedCourseCodeColumn" text="Course Code" />
+                                        <TableColumn fx:id="assignedCourseNameColumn" text="Course Name" />
+                                    </columns>
+                                </TableView>
+
+                                <!-- Save and Clear Buttons -->
+                                <Button fx:id="saveButton" onAction="#handleSaveFaculty" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                <Button fx:id="clearButton" onAction="#handleClearForm" text="Clear" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="80.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

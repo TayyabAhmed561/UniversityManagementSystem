@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementapp.controller.StudentController.FacultyStudentController">
+    <children>
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <tabs>
+                <Tab closable="false" text="Students">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label styleClass="label" text="Students Enrolled in Your Courses:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <TableView fx:id="studentsTable" styleClass="table-view" prefHeight="300.0" prefWidth="560.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                    <columns>
+                                        <TableColumn fx:id="studentIdColumn" prefWidth="80" text="Student ID" />
+                                        <TableColumn fx:id="nameColumn" prefWidth="120" text="Name" />
+                                        <TableColumn fx:id="emailColumn" prefWidth="150" text="Email" />
+                                        <TableColumn fx:id="courseCodeColumn" prefWidth="100" text="Course Code" />
+                                        <TableColumn fx:id="courseNameColumn" prefWidth="120" text="Course Name" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Grades">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label styleClass="label" text="Student Grades in Your Courses:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <TableView fx:id="gradesTable" styleClass="table-view" prefHeight="300.0" prefWidth="560.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                    <columns>
+                                        <TableColumn fx:id="gradeStudentIdColumn" prefWidth="80" text="Student ID" />
+                                        <TableColumn fx:id="gradeNameColumn" prefWidth="120" text="Name" />
+                                        <TableColumn fx:id="gradeCourseCodeColumn" prefWidth="80" text="Course Code" />
+                                        <TableColumn fx:id="gradeCourseNameColumn" prefWidth="120" text="Course Name" />
+                                        <TableColumn fx:id="finalGradeColumn" prefWidth="80" text="Final Grade" />
+                                        <TableColumn fx:id="midtermGradeColumn" prefWidth="80" text="Midterm Grade" />
+                                        <TableColumn fx:id="assignmentGradeColumn" prefWidth="80" text="Assignment Grade" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <ToolBar fx:id="toolBar" styleClass="tool-bar" prefHeight="40.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <Button fx:id="backButton" onAction="#handleBackAction" text="Back" />
+            </items>
+        </ToolBar>
+    </children>
+</AnchorPane>

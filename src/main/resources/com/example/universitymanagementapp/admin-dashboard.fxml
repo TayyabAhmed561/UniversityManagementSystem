@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootPane" style="-fx-background-size: contain; -fx-border-color: black; -fx-border-width: 15;" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.example.universitymanagementapp.controller.AdminController.AdminDashboard">
+    <children>
+        <!-- Navigation Menu -->
+        <MenuButton fx:id="toggleMenuButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.666666" prefWidth="72.0" style="-fx-background-color: rgb(173,0,41);" text="☰">
+            <items>
+                <MenuItem fx:id="dashboard" mnemonicParsing="false" onAction="#handleDashboardAction" text="Dashboard" />
+                <MenuItem fx:id="subjectSelection" mnemonicParsing="false" onAction="#handleSubjectSelection" text="Subjects" />
+                <MenuItem fx:id="courseSelection" mnemonicParsing="false" onAction="#handleCourseSelection" text="Courses" />
+                <MenuItem fx:id="studentSelection" mnemonicParsing="false" onAction="#handleStudentSelection" text="Students" />
+                <MenuItem fx:id="facultySelection" mnemonicParsing="false" onAction="#handleFacultySelection" text="Faculty" />
+                <MenuItem fx:id="eventSelection" mnemonicParsing="false" onAction="#handleEventSelection" text="Events" />
+                <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#handleLogoutAction" text="Logout" />
+            </items>
+        </MenuButton>
+
+        <!-- Main Content Area -->
+        <AnchorPane fx:id="contentPane" AnchorPane.topAnchor="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <ScrollPane fitToWidth="true" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                    <content>
+                        <VBox spacing="20" styleClass="vbox">
+                            <!-- Quick Action Buttons -->
+                            <HBox spacing="10" alignment="CENTER">
+                                <Button fx:id="addStudentButton" onAction="#handleAddStudent" text="Add Student" styleClass="button" />
+                                <Button fx:id="addCourseButton" onAction="#handleAddCourse" text="Add Course" styleClass="button" />
+                                <Button fx:id="addFacultyButton" onAction="#handleAddFaculty" text="Add Faculty" styleClass="button" />
+                                <Button fx:id="addSubjectButton" onAction="#handleAddSubject" text="Add Subject" styleClass="button" />
+                                <Button fx:id="addEventButton" onAction="#handleAddEvent" text="Add Event" styleClass="button" />
+                            </HBox>
+
+                            <!-- Summary Section -->
+                            <VBox spacing="10">
+                                <Label text="System Summary" styleClass="label" />
+                                <GridPane hgap="10" vgap="5" styleClass="grid-pane">
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Total Students:" styleClass="label" />
+                                    <Text fx:id="totalStudentsText" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="text" />
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="Total Courses:" styleClass="label" />
+                                    <Text fx:id="totalCoursesText" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="text" />
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="Total Faculty:" styleClass="label" />
+                                    <Text fx:id="totalFacultyText" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="text" />
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="Total Subjects:" styleClass="label" />
+                                    <Text fx:id="totalSubjectsText" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="text" />
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="4" text="Total Events:" styleClass="label" />
+                                    <Text fx:id="totalEventsText" GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="text" />
+                                </GridPane>
+                            </VBox>
+
+                            <!-- Recent Activities Section -->
+                            <VBox spacing="10">
+                                <Label text="Recent Activities" styleClass="label" />
+                                <TableView fx:id="recentActivitiesTable" prefHeight="150.0" styleClass="table-view">
+                                    <columns>
+                                        <TableColumn fx:id="activityTypeColumn" prefWidth="150" text="Activity Type" />
+                                        <TableColumn fx:id="activityDescriptionColumn" prefWidth="300" text="Description" />
+                                        <TableColumn fx:id="activityDateColumn" prefWidth="150" text="Date" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+
+                            <!-- Recent Course Registrations -->
+                            <VBox spacing="10">
+                                <Label text="Recent Course Registrations" styleClass="label" />
+                                <TableView fx:id="recentRegistrationsTable" prefHeight="150.0" styleClass="table-view">
+                                    <columns>
+                                        <TableColumn fx:id="registrationStudentColumn" prefWidth="150" text="Student ID" />
+                                        <TableColumn fx:id="registrationCourseColumn" prefWidth="150" text="Course Code" />
+                                        <TableColumn fx:id="registrationDateColumn" prefWidth="150" text="Date" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+
+                            <!-- Upcoming Events -->
+                            <VBox spacing="10">
+                                <Label text="Upcoming Events" styleClass="label" />
+                                <TableView fx:id="upcomingEventsTable" prefHeight="150.0" styleClass="table-view">
+                                    <columns>
+                                        <TableColumn fx:id="eventCodeColumn" prefWidth="100" text="Event Code" />
+                                        <TableColumn fx:id="eventNameColumn" prefWidth="150" text="Event Name" />
+                                        <TableColumn fx:id="eventDateColumn" prefWidth="150" text="Date &amp; Time" />
+                                        <TableColumn fx:id="eventLocationColumn" prefWidth="150" text="Location" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+
+                            <!-- Notifications/Alerts -->
+                            <VBox spacing="10">
+                                <Label text="Notifications &amp; Alerts" styleClass="label" />
+                                <TableView fx:id="notificationsTable" prefHeight="150.0" styleClass="table-view">
+                                    <columns>
+                                        <TableColumn fx:id="notificationTypeColumn" prefWidth="150" text="Type" />
+                                        <TableColumn fx:id="notificationMessageColumn" prefWidth="300" text="Message" />
+                                        <TableColumn fx:id="notificationDateColumn" prefWidth="150" text="Date" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

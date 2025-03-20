@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ToolBar?>
+
+
+<AnchorPane prefHeight="498.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="com.example.universitymanagementapp.controller.SubjectController.FacultySubjectController">
+    <children>
+        <ToolBar fx:id="toolBar" prefHeight="39.0" prefWidth="600.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <tabs>
+                <Tab closable="false" text="All Subjects">
+                    <content>
+                        <TableView fx:id="allSubjectsTable">
+                            <columns>
+                                <TableColumn fx:id="subjectNameColumn" prefWidth="250" text="Subject Name" />
+                                <TableColumn fx:id="subjectCodeColumn" prefWidth="250" text="Subject Code" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Search">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <TextField fx:id="subjectSearch" prefWidth="200.0" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" promptText="Search by name or code" />
+                                <TableView fx:id="searchResultsTable" AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <columns>
+                                        <TableColumn fx:id="searchSubjectNameColumn" prefWidth="250" text="Subject Name" />
+                                        <TableColumn fx:id="searchSubjectCodeColumn" prefWidth="250" text="Subject Code" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

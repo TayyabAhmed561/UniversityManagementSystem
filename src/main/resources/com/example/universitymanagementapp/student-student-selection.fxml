@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@admin-students-management.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.universitymanagementapp.controller.StudentController.StudentStudentController">
+    <children>
+        <TabPane fx:id="tabPane" styleClass="tab-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <tabs>
+                <Tab closable="false" text="Profile">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label text="Student ID:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <Label fx:id="studentIdLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="10.0" />
+                                <Label text="Name:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0" />
+                                <Label fx:id="nameLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="40.0" />
+                                <Label text="Email:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0" />
+                                <Label fx:id="emailLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="70.0" />
+                                <Label text="Phone:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0" />
+                                <Label fx:id="phoneLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                                <Label text="Address:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                                <Label fx:id="addressLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="130.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Academic Information">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label text="Academic Level:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <Label fx:id="academicLevelLabel" layoutX="139.0" layoutY="10.0" text="N/A" AnchorPane.leftAnchor="139.0" AnchorPane.topAnchor="10.0" />
+                                <Label text="Current Semester:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0" />
+                                <Label fx:id="currentSemesterLabel" layoutX="143.0" layoutY="40.0" text="N/A" AnchorPane.leftAnchor="143.0" AnchorPane.topAnchor="40.0" />
+                                <Label text="Registered Courses:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0" />
+                                <TableView fx:id="registeredCoursesTable" prefHeight="100.0" prefWidth="560.0" styleClass="table-view" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="90.0">
+                                    <columns>
+                                        <TableColumn fx:id="courseCodeColumn" prefWidth="100" text="Course Code" />
+                                        <TableColumn fx:id="courseNameColumn" prefWidth="150" text="Course Name" />
+                                        <TableColumn fx:id="subjectNameColumn" prefWidth="150" text="Subject" />
+                                        <TableColumn fx:id="instructorColumn" prefWidth="100" text="Instructor" />
+                                    </columns>
+                                </TableView>
+                                <Label text="Registered Subjects:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
+                                <Label fx:id="registeredSubjectsLabel" text="N/A" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="220.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Tuition">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label text="Tuition Fees:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <Label fx:id="tuitionFeesLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Grades">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <TableView fx:id="gradesTable" styleClass="table-view" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <columns>
+                                        <TableColumn fx:id="gradeCourseCodeColumn" prefWidth="80" text="Course Code" />
+                                        <TableColumn fx:id="gradeCourseNameColumn" prefWidth="120" text="Course Name" />
+                                        <TableColumn fx:id="gradeSubjectColumn" prefWidth="100" text="Subject" />
+                                        <TableColumn fx:id="finalGradeColumn" prefWidth="80" text="Final Grade" />
+                                        <TableColumn fx:id="midtermGradeColumn" prefWidth="80" text="Midterm Grade" />
+                                        <TableColumn fx:id="assignmentGradeColumn" prefWidth="80" text="Assignment Grade" />
+                                        <TableColumn fx:id="quizGradeColumn" prefWidth="80" text="Quiz Grade" />
+                                        <TableColumn fx:id="labGradeColumn" prefWidth="80" text="Lab Grade" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Progress">
+                    <content>
+                        <AnchorPane>
+                            <children>
+                                <Label text="Progress:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                <Label fx:id="progressLabel" text="N/A" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="581.0" styleClass="tool-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    </children>
+</AnchorPane>
