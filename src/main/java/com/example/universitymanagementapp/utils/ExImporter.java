@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ExImporter {
-    private static final String FILE_PATH = "C:/Users/adria/IdeaProjects/UniversityManagementApplication/src/main/resources/UMS_Data.xlsx";// Path to your Excel file
+    private static final String FILE_PATH = "src/main/resources/UMS_Data.xlsx";// Path to your Excel file
     private CourseDAO courseService;
     private StudentDAO studentService;
     private FacultyDAO facultyService;

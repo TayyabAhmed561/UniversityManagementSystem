@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ExExporter {
-    private static final String FILE_PATH = "C:/Users/adria/IdeaProjects/UniversityManagementApplication/src/main/resources/UMS_Data1.xlsx";
+    private static final String FILE_PATH = "src/main/resources/UMS_Data1.xlsx";
     private CourseDAO courseDAO;
     private StudentDAO studentDAO;
     private FacultyDAO facultyDAO;
