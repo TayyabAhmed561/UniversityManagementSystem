@@ -1,18 +1,20 @@
-package com.example.universitymanagementapp.auth.AuthenticationManager;
+package com.example.universitymanagementapp.auth.authenticator;
 
 //handles authentication for all users including admin
 
 
 
 
-import com.example.universitymanagementapp.dao.AdminDAO;
-import com.example.universitymanagementapp.dao.FacultyDAO;
-import com.example.universitymanagementapp.dao.StudentDAO;
-import com.example.universitymanagementapp.model.User;
-import com.example.universitymanagementapp.utils.PasswordHasher;
-
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import com.example.universitymanagementapp.model.Admins;
+import com.example.universitymanagementapp.model.Faculty;
+import com.example.universitymanagementapp.model.User;
+import com.example.universitymanagementapp.utils.PasswordHasher;
+import com.example.universitymanagementapp.dao.FacultyDAO;
+import com.example.universitymanagementapp.dao.StudentDAO;
+import com.example.universitymanagementapp.dao.AdminDAO;
 
 public class UserAuthentication {
     private static final List<User> users = new CopyOnWriteArrayList<>();
@@ -40,8 +42,10 @@ public class UserAuthentication {
 
     public static User authenticate(String username, String password) {
         System.out.println("Authenticating: " + username);
-        System.out.println("Current users: " + users);
+        String inputHash = PasswordHasher.hashPassword(password);
         for (User user : users) {
+            System.out.println("Checking user: " + user.getUsername() + ", Stored hash: " + user.getPassword());
+            System.out.println("Input hash: " + inputHash);
             if (user.getUsername().equals(username) &&
                     PasswordHasher.verifyPassword(password, user.getPassword())) {
                 System.out.println("Match found: " + user);
@@ -54,5 +58,23 @@ public class UserAuthentication {
 
     public static synchronized void refreshUsers() {
         populateUsers();
+    }
+
+    public static class AuthenticationResult {
+        private final User user;
+        private final String facultyName;
+
+        public AuthenticationResult(User user, String facultyName) {
+            this.user = user;
+            this.facultyName = facultyName;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public String getFacultyName() {
+            return facultyName;
+        }
     }
 }

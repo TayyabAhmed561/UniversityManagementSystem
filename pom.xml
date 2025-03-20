@@ -159,7 +159,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.universitymanagementapp.UniversityManagementApplication
+                                com.example.universitymanagementapp.UniversityManagementApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

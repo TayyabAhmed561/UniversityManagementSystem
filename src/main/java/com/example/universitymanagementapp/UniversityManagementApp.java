@@ -1,6 +1,6 @@
 package com.example.universitymanagementapp;
 
-import com.example.universitymanagementapp.auth.AuthenticationManager.UserAuthentication;
+import com.example.universitymanagementapp.auth.authenticator.UserAuthentication;
 import com.example.universitymanagementapp.dao.*;
 import com.example.universitymanagementapp.model.Admins;
 import com.example.universitymanagementapp.utils.ExcelImporter;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UniversityManagementApplication extends Application {
+public class UniversityManagementApp extends Application {
     public static CourseDAO courseDAO = new CourseDAO();
     public static StudentDAO studentDAO = new StudentDAO();
     public static FacultyDAO facultyDAO = new FacultyDAO();
@@ -24,7 +24,7 @@ public class UniversityManagementApplication extends Application {
     public void start(Stage stage) throws IOException {
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(UniversityManagementApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(UniversityManagementApp.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 601, 498);
         stage.setTitle("Login Page");
         stage.setScene(scene);
@@ -40,12 +40,12 @@ public class UniversityManagementApplication extends Application {
     private static void importDataOnStartup() {
         try {
             System.out.println("Starting data import...");
-            CourseDAO courseDAO = UniversityManagementApplication.courseDAO;
-            StudentDAO studentDAO = UniversityManagementApplication.studentDAO;
-            FacultyDAO facultyDAO = UniversityManagementApplication.facultyDAO;
-            SubjectDAO subjectDAO = UniversityManagementApplication.subjectDAO;
-            EventDAO eventDAO = UniversityManagementApplication.eventDAO;
-            AdminDAO adminDAO = UniversityManagementApplication.adminDAO;
+            CourseDAO courseDAO = UniversityManagementApp.courseDAO;
+            StudentDAO studentDAO = UniversityManagementApp.studentDAO;
+            FacultyDAO facultyDAO = UniversityManagementApp.facultyDAO;
+            SubjectDAO subjectDAO = UniversityManagementApp.subjectDAO;
+            EventDAO eventDAO = UniversityManagementApp.eventDAO;
+            AdminDAO adminDAO = UniversityManagementApp.adminDAO;
 
             //add admin
             Admins admin = new Admins("admin1", "pass", "name");
